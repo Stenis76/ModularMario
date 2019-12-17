@@ -1,8 +1,8 @@
 class LevelObject {    
-    protected x: number;
-    protected y: number;
-    protected w: number;
-    protected h: number;
+    public x: number;
+    public y: number;
+    public w: number;
+    public h: number;
 
     protected constructor(x: number, y: number, w: number, h: number) {
         this.x = x;
@@ -12,7 +12,8 @@ class LevelObject {
     }
 
     public draw() {
-        fill(100, 0, 255);
+        fill(0, 0, 0, 0);
+        noStroke();
         rect(this.x, this.y, this.w, this.h)
     }
 }

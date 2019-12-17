@@ -1,4 +1,5 @@
-let createNewLevel: any;
+let gameController: any;
+let player: any; 
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -19,9 +20,9 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
     frameRate(60);
-    noCursor();
     fullscreen();
-    createNewLevel = new LevelFactory();
+    gameController = new GameController();
+    player = gameController.drawLevel();    
 }
 
 /**
@@ -31,8 +32,19 @@ function setup() {
  */
 function draw() {
     background(21);
-    createNewLevel.getLevel(0);
+    gameController.drawGameArea();
+    gameController.drawLevel(); 
+    player.show()   
+    player.run();
+    player.update();
+    gameController.collisionDetection(player);
 }
+
+function keyPressed() {
+    if(keyCode == 32) {
+        player.jump();
+    }
+} 
 
 /**
  *  Built in windowResize listener function in P5
