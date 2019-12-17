@@ -11,6 +11,27 @@ var Level = (function () {
     };
     return Level;
 }());
+var LevelFactory = (function () {
+    function LevelFactory() {
+        this.levels = [
+            [1, 2, 3, 4, 1, 1, 1],
+            [1, 3, 3, 3, 4]
+        ];
+    }
+    LevelFactory.prototype.getLevel = function (currentLevel) {
+        var level = this.levels;
+        var listOfLevelObjects = [];
+        for (var i = 0; i < level[currentLevel].length; i++) {
+            switch (level[currentLevel][i]) {
+                case 1:
+                    listOfLevelObjects.push(new Block(20, 20, 20, 20, false));
+                    break;
+            }
+        }
+        return new Level(listOfLevelObjects);
+    };
+    return LevelFactory;
+}());
 var LevelObject = (function () {
     function LevelObject(x, y, w, h) {
         this.x = x;
@@ -46,27 +67,6 @@ var Block = (function (_super) {
     }
     return Block;
 }(LevelObject));
-var LevelFactory = (function () {
-    function LevelFactory() {
-        this.levels = [
-            [1, 2, 3, 4, 1, 1, 1],
-            [1, 3, 3, 3, 4]
-        ];
-    }
-    LevelFactory.prototype.getLevel = function (currentLevel) {
-        var level = this.levels;
-        var listOfLevelObjects = [];
-        for (var i = 0; i < level[currentLevel].length; i++) {
-            switch (level[currentLevel][i]) {
-                case 1:
-                    listOfLevelObjects.push(new Block(20, 20, 20, 20, false));
-                    break;
-            }
-        }
-        return new Level(listOfLevelObjects);
-    };
-    return LevelFactory;
-}());
 var createNewLevel;
 function preload() {
 }
