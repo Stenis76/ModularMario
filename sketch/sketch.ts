@@ -1,3 +1,4 @@
+let createNewLevel: any;
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -16,10 +17,11 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight)
-    frameRate(60)
-    noCursor()
-    fullscreen()
+    createCanvas(windowWidth, windowHeight);
+    frameRate(60);
+    noCursor();
+    fullscreen();
+    createNewLevel = new LevelFactory();
 }
 
 /**
@@ -28,12 +30,9 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    background('blue')
-    fill('red')
-    stroke('white')
-    circle(width * .5, height * .5, width * 0.2)
+    background(21);
+    createNewLevel.getLevel(0);
 }
-
 
 /**
  *  Built in windowResize listener function in P5
