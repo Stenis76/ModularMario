@@ -8,6 +8,6 @@ class Block extends LevelObject {
     
     public draw() {
         fill('white');
-        rect(this.x, this.y, this.w, this.h);
+        image(blockImage, this.x, this.y, this.w, this.h);
     }
 }

@@ -172,7 +172,7 @@ var Block = (function (_super) {
     }
     Block.prototype.draw = function () {
         fill('white');
-        rect(this.x, this.y, this.w, this.h);
+        image(blockImage, this.x, this.y, this.w, this.h);
     };
     return Block;
 }(LevelObject));
@@ -220,13 +220,17 @@ var FinishBlock = (function (_super) {
     }
     FinishBlock.prototype.draw = function () {
         fill('green');
-        rect(this.x, this.y, this.w, this.h);
+        image(finishImage, this.x, this.y, this.w, this.h);
     };
     return FinishBlock;
 }(LevelObject));
 var gameController;
 var player;
+var blockImage;
+var finishImage;
 function preload() {
+    blockImage = loadImage('./assets/images/dirtblock.png');
+    finishImage = loadImage('./assets/images/cigarette.png');
 }
 function setup() {
     createCanvas(windowWidth, windowHeight);

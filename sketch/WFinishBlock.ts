@@ -6,6 +6,6 @@ class FinishBlock extends LevelObject {
     
     public draw() {
         fill('green');
-        rect(this.x, this.y, this.w, this.h);
+        image(finishImage, this.x, this.y, this.w, this.h);
     }
 }
