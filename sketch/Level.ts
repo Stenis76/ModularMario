@@ -1,13 +1,7 @@
 class Level {
-    private listOfLevelObjects: Array<LevelObject> = [];
+    public levelObjects: Array<LevelObject> = [];
 
     public constructor(listOfLevelObjects: Array<LevelObject>) {
-        this.listOfLevelObjects = listOfLevelObjects;
-    }
-
-    public draw() {
-        for(let i = 0; i < this.listOfLevelObjects.length; i++) {
-            console.log('hej');
-        }
-    }
+        this.levelObjects = listOfLevelObjects;
+    }    
 }
