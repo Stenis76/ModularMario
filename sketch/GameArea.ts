@@ -1,4 +1,4 @@
-class GameArea {
+class GameArea implements DrawArea{
     w: number = height;
     h: number = height;
     x: number = width / 4;

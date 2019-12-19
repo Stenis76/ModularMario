@@ -2,12 +2,23 @@ class GameController {
     private currentLevel: number = 0;   //Keep track of currentLevel
     levelFactory = new LevelFactory();
     level: Level = this.levelFactory.getLevel(this.currentLevel);   //Save array of level objects in level variable
-
+    
+    private sidebar = new Sidebar();
+    private gameArea = new GameArea();
     //Draw the gameArea
     public drawGameArea() {
-        let gameArea = new GameArea();
-        gameArea.draw();
+        this.gameArea.draw();
     }
+    
+    /**
+     * drawSidebar //Draw the sidebar
+     */
+    public drawSidebar() {
+        this.sidebar.draw();
+        
+    }
+
+
 
     //Loop list of level objects and draw them
     public drawLevel() {        
