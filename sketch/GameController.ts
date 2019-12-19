@@ -8,6 +8,17 @@ class GameController {
         let gameArea = new GameArea();
         gameArea.draw();
     }
+    
+    /**
+     * drawSidebar //Draw the sidebar
+     */
+    public drawSidebar() {
+        let sidebar = new Sidebar();
+        sidebar.draw();
+        
+    }
+
+
 
     //Loop list of level objects and draw them
     public drawLevel() {        
