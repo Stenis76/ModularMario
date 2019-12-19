@@ -36,13 +36,13 @@ function setup() {
  */
 function draw() {
   background(21);
-  gameController.splashScreen.draw();
   gameController.drawGameArea();
   gameController.drawLevel();
   player.show();
   player.run();
   player.update();
   gameController.collisionDetection(player);
+  gameController.splashScreen.draw();
 }
 
 function keyPressed() {

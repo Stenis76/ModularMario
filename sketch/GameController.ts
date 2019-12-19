@@ -1,5 +1,5 @@
 class GameController {
-  splashScreen = new SplashScreen(windowHeight, windowWidth, 0, 0);
+  splashScreen = new SplashScreen(windowWidth, windowHeight, 0, 0);
   private currentLevel: number = 0; //Keep track of currentLevel
   levelFactory = new LevelFactory();
   level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable

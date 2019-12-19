@@ -14,5 +14,6 @@ class SplashScreen {
   draw() {
     fill("pink");
     rect(this.x, this.y, this.w, this.h);
+    // console.log(this.h, this.w);
   }
 }
