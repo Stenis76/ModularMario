@@ -37,8 +37,8 @@ function setup() {
 function draw() {
     background(21);
     gameController.drawGameArea();
-    gameController.drawLevel(); 
     gameController.drawSidebar();
+    gameController.drawLevel(); 
     player.show();
     player.run();
     player.update();
