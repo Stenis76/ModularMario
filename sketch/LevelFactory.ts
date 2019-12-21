@@ -65,6 +65,44 @@ class LevelFactory {
       x = this.GA.x;
       y += h;
     }
+
+    let ladderCount: number = 0;
+    let ladderPresent: boolean = false;
+    let logCount: number = 0;
+    let logPresent: boolean = false;
+    let stoneCount: number = 0;
+    let stonePresent: boolean = false;
+
+    for(let i = 0; i < this.levels[currentLevel].assets.length; i++) {
+        switch (this.levels[currentLevel].assets[i]) {
+            case 1:
+                ladderCount++;
+                ladderPresent = true;                
+                break;                
+            case 2:
+                logCount++;
+                logPresent = true;                
+                break;                
+            case 3:
+                stoneCount++;
+                stonePresent = true;                
+                break;                
+        }
+    }
+
+    if(ladderPresent) {
+        let ladder = new Ladder(x, y, w, h, `X ${ladderCount}`)
+        levelObjects.push(ladder);
+    }
+    if(logPresent) {
+        let log = new Log(x, y, w, h, `X ${logCount}`)
+        levelObjects.push(log);
+    }
+    if(stonePresent) {
+        let stone = new Stone(x, y, w, h, `X ${stoneCount}`)
+        levelObjects.push(stone);
+    }
+
     return new Level(levelObjects);
   }
 }

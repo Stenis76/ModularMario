@@ -14,11 +14,8 @@ class GameController {
      * drawSidebar //Draw the sidebar
      */
     public drawSidebar() {
-        this.sidebar.draw();
-        
+        this.sidebar.draw();        
     }
-
-
 
     //Loop list of level objects and draw them
     public drawLevel() {        
