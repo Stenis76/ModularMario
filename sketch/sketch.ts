@@ -36,20 +36,25 @@ function setup() {
  */
 function draw() {
   background(21);
+    if(currentScreen == 0){
+    gameController.splashScreen.draw();
+  }
+
+  if(currentScreen == 1){
   gameController.drawGameArea();
   gameController.drawLevel();
   player.show();
   player.run();
   player.update();
   gameController.collisionDetection(player);
-  gameController.splashScreen.draw();
+  }
 }
 
 function keyPressed() {
   if (keyCode == 32) {
     player.jump();
   }
-}
+  }
 
 /**
  *  Built in windowResize listener function in P5
