@@ -6,7 +6,7 @@ class LevelFactory {
     layout: Array<Array<Number>>;
   }> = [
     {
-      assets: [1, 1, 2, 2, 3, 3],
+      assets: [],
       layout: [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
