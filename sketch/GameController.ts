@@ -1,19 +1,16 @@
 class GameController {
-    private currentLevel: number = 0;   //Keep track of currentLevel
+    private currentLevel: number = 1;   //Keep track of currentLevel
     levelFactory = new LevelFactory();
     level: Level = this.levelFactory.getLevel(this.currentLevel);   //Save array of level objects in level variable
     
-    private sidebar = new Sidebar();
+    private sidebar = new Sidebar(this.currentLevel);
     private gameArea = new GameArea();
-    //Draw the gameArea
-    public drawGameArea() {
+    
+    public drawGameArea() { //Draw the GameArea
         this.gameArea.draw();
     }
-    
-    /**
-     * drawSidebar //Draw the sidebar
-     */
-    public drawSidebar() {
+        
+    public drawSidebar() {  //Draw the Sidebar
         this.sidebar.draw();        
     }
 
@@ -42,7 +39,7 @@ class GameController {
             }
         }
         
-        //Determina what collision is and what should happen when collision occur
+        //Determine what collision is and what should happen when collision occur
         for(let i = 0; i < collideBlocks.length; i++){
             //let d = dist(character.x, character.y, collideBlocks[i].x, collideBlocks[i].y);
             if (character.x < collideBlocks[i].x + collideBlocks[i].w &&
