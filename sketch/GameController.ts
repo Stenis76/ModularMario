@@ -3,7 +3,7 @@ class GameController {
     private levelFactory = new LevelFactory();
     private level: Level = this.levelFactory.getLevel(this.currentLevel);   //Save array of level objects in level variable
     
-    public sidebar = new Sidebar(this.currentLevel);
+    public sidebar = new Sidebar();
     private gameArea = new GameArea();
     
     public drawGameArea() { //Draw the GameArea
@@ -11,7 +11,7 @@ class GameController {
     }
         
     public drawSidebar() {  //Draw the Sidebar
-        this.sidebar.draw();        
+        this.sidebar.draw(this.currentLevel);        
     }
 
     //Loop list of level objects and draw them

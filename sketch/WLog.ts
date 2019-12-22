@@ -1,4 +1,5 @@
-class Log extends LevelObject {   
+class Log extends LevelObject {
+    private sidebar = new Sidebar();   
     public x: number;
     public y: number;
     public w: number;
@@ -7,8 +8,8 @@ class Log extends LevelObject {
 
     constructor(x: number, y: number, w: number, h: number, text: string) {
         super(x, y, w, h);
-        this.x = gameController.sidebar.w / 3;
-        this.y = gameController.sidebar.h * 0.4;
+        this.x = this.sidebar.w / 3;
+        this.y = this.sidebar.h * 0.4;
         this.w = 50;
         this.h = 25;
         this.text = text;
