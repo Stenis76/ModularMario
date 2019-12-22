@@ -1,5 +1,5 @@
-class Log extends LevelObject { 
-    public sidebar = new Sidebar();   
+class Log extends LevelObject {
+    private sidebar = new Sidebar();   
     public x: number;
     public y: number;
     public w: number;

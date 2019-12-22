@@ -1,6 +1,6 @@
-class Ladder extends LevelObject { 
-    public sidebar = new Sidebar();   
-    public x: number;
+class Ladder extends LevelObject {
+    private sidebar = new Sidebar();   
+    static x: number;
     public y: number;
     public w: number;
     public h: number;

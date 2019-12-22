@@ -1,5 +1,5 @@
 class Stone extends LevelObject { 
-    public sidebar = new Sidebar();   
+    private sidebar = new Sidebar();      
     public x: number;
     public y: number;
     public w: number;
