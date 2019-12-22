@@ -1,9 +1,9 @@
 class GameController {
     private currentLevel: number = 1;   //Keep track of currentLevel
-    levelFactory = new LevelFactory();
-    level: Level = this.levelFactory.getLevel(this.currentLevel);   //Save array of level objects in level variable
+    private levelFactory = new LevelFactory();
+    private level: Level = this.levelFactory.getLevel(this.currentLevel);   //Save array of level objects in level variable
     
-    private sidebar = new Sidebar(this.currentLevel);
+    public sidebar = new Sidebar(this.currentLevel);
     private gameArea = new GameArea();
     
     public drawGameArea() { //Draw the GameArea

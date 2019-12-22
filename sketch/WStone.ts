@@ -1,5 +1,4 @@
-class Stone extends LevelObject { 
-    public sidebar = new Sidebar();   
+class Stone extends LevelObject {       
     public x: number;
     public y: number;
     public w: number;
@@ -8,8 +7,8 @@ class Stone extends LevelObject {
 
     constructor(x: number, y: number, w: number, h: number, text: string) {
         super(x, y, w, h);
-        this.x = this.sidebar.w / 3;
-        this.y = this.sidebar.h * 0.6;
+        this.x = gameController.sidebar.w / 3;
+        this.y = gameController.sidebar.h * 0.6;
         this.w = 25;
         this.h = 25;
         this.text = text;
