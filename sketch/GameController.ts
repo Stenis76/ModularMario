@@ -1,9 +1,9 @@
 class GameController {
-    private currentLevel: number = 1;   //Keep track of currentLevel
+    private currentLevel: number = 0;   //Keep track of currentLevel
     private levelFactory = new LevelFactory();
-    private level: Level = this.levelFactory.getLevel(this.currentLevel);   //Save array of level objects in level variable
-    
-    public sidebar = new Sidebar();
+    public level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
+    private builder = new Builder(this.level);
+    private sidebar = new Sidebar();
     private gameArea = new GameArea();
     
     public drawGameArea() { //Draw the GameArea
@@ -16,7 +16,7 @@ class GameController {
 
     //Loop list of level objects and draw them
     public drawLevel() {        
-        let char: number = 0;
+        let char: number = 0;        
         
         for(let i = 0; i < this.level.levelObjects.length; i++){
             this.level.levelObjects[i].draw();
@@ -26,6 +26,17 @@ class GameController {
             } 
         }         
         return this.level.levelObjects[char];   //Return the Character object    
+    }
+
+    //Loop list of level assets and draw them
+    public drawAssets() {
+        for(let i = 0; i < this.level.levelAssets.length; i++) {
+            this.level.levelAssets[i].draw();
+        }
+    }
+
+    public buildPhase() {
+        this.builder.mousePressed();
     }
 
     //Keep track of player versus all collidable objects

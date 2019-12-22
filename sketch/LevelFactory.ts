@@ -64,6 +64,7 @@ class LevelFactory {
     let w = cellUnit;
     let h = cellUnit;
     const levelObjects: Array<LevelObject> = [];
+    const levelAssets: Array<LevelObject> = [];
 
     for (let i = 0; i < this.levels[currentLevel].layout.length; i++) {
       for (let j = 0; j < this.levels[currentLevel].layout[i].length; j++) {
@@ -117,17 +118,17 @@ class LevelFactory {
 
     if(ladderPresent) {
         let ladder = new Ladder(x, y, w, h, `X ${ladderCount}`)
-        levelObjects.push(ladder);
+        levelAssets.push(ladder);
     }
     if(logPresent) {
         let log = new Log(x, y, w, h, `X ${logCount}`)
-        levelObjects.push(log);
+        levelAssets.push(log);
     }
     if(stonePresent) {
         let stone = new Stone(x, y, w, h, `X ${stoneCount}`)
-        levelObjects.push(stone);
+        levelAssets.push(stone);
     }
 
-    return new Level(levelObjects);
+    return new Level(levelObjects, levelAssets);
   }
 }
