@@ -38,9 +38,9 @@ function draw() {
     background(21);
     gameController.drawGameArea();
     gameController.drawLevel(); 
-    player.show()   
-    player.run();
-    player.update();
+    // player.show()   
+    // player.run();
+    // player.update();
     gameController.collisionDetection(player);
 }
 
