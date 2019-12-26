@@ -1,17 +1,19 @@
 class GameController {
     private currentLevel: number = 0;   //Keep track of currentLevel
+    public inBuildPhase: boolean = false;   //Activated when in building phase  
+    
     private levelFactory = new LevelFactory();
     public level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
-    private builder = new Builder(this.level);
+
     private sidebar = new Sidebar();
-    private gameArea = new GameArea();
+    private gameArea = new GameArea();    
     
     public drawGameArea() { //Draw the GameArea
         this.gameArea.draw();
     }
         
     public drawSidebar() {  //Draw the Sidebar
-        this.sidebar.draw(this.currentLevel);        
+        this.sidebar.draw(this.currentLevel);      
     }
 
     //Loop list of level objects and draw them
@@ -30,17 +32,57 @@ class GameController {
 
     //Loop list of level assets and draw them
     public drawAssets() {
-        for(let i = 0; i < this.level.levelAssets.length; i++) {
-            this.level.levelAssets[i].draw();
+        let ladders: Array<LevelObject> = [];
+        let logs: Array<LevelObject> = [];
+        let stones: Array<LevelObject> = [];
+
+        for(let i = 0; i < this.level.levelAssets.length; i++) {            
+            switch (this.level.levelAssets[i].constructor) {
+                case Ladder:
+                    ladders.push(this.level.levelAssets[i]);
+                    break;
+                case Log:
+                    logs.push(this.level.levelAssets[i]);                    
+                    break;
+                case Stone:
+                    stones.push(this.level.levelAssets[i]);
+                    break;
+            }  
+            this.level.levelAssets[i].draw();           
+        }
+
+        for (let i = 0; i < ladders.length; i++) {
+            if (i == ladders.length - 1) {
+                ladders[i].drawText(ladders.length);
+            }
+        }
+        for (let i = 0; i < logs.length; i++) {
+            if (i == logs.length - 1) {
+                logs[i].drawText(logs.length);
+            }
+        }
+        for (let i = 0; i < stones.length; i++) {
+            if (i == stones.length - 1) {
+                stones[i].drawText(stones.length);
+            }
         }
     }
 
-    public buildPhase() {
-        this.builder.mousePressed();
+    public changeGamePhase() {
+        if (this.inBuildPhase == false) {
+            this.inBuildPhase = true;
+        } else {
+            this.inBuildPhase = false;
+        }
+    }
+
+    public buildPhase() { 
+        let builder = new Builder(this.level, this.inBuildPhase);      
+        builder.inBuildMode();
     }
 
     //Keep track of player versus all collidable objects
-    collisionDetection(character: Character) {        
+    public collisionDetection(character: Character) {        
         let collideBlocks: Array<LevelObject> = []; 
 
         //Loop through all objects and save the collideable ones in new array

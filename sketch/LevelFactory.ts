@@ -6,7 +6,7 @@ class LevelFactory {
     layout: Array<Array<Number>>;
   }> = [
     {
-      assets: [1, 1, 2, 3],
+      assets: [1, 1, 2, 3, 3, 3, 3],
       layout: [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -58,7 +58,7 @@ class LevelFactory {
   ];
 
   public getLevel(currentLevel: number): any {
-    let cellUnit = Math.round(this.GA.w / this.levels[currentLevel].layout.length);
+    let cellUnit = this.GA.w / this.levels[currentLevel].layout.length;
     let x = this.GA.x;
     let y = this.GA.y;
     let w = cellUnit;
@@ -92,43 +92,22 @@ class LevelFactory {
       y += h;
     }
 
-    let ladderCount: number = 0;
-    let ladderPresent: boolean = false;
-    let logCount: number = 0;
-    let logPresent: boolean = false;
-    let stoneCount: number = 0;
-    let stonePresent: boolean = false;
-
     for(let i = 0; i < this.levels[currentLevel].assets.length; i++) {
         switch (this.levels[currentLevel].assets[i]) {
             case 1:
-                ladderCount++;
-                ladderPresent = true;                
-                break;                
+              let ladder = new Ladder(x, y, w, h);
+              levelAssets.push(ladder);                
+              break;                
             case 2:
-                logCount++;
-                logPresent = true;                
-                break;                
+              let log = new Log(x, y, w, h);
+              levelAssets.push(log);               
+              break;                
             case 3:
-                stoneCount++;
-                stonePresent = true;                
-                break;                
+              let stone = new Stone(x, y, w, h);
+              levelAssets.push(stone);              
+              break;                
         }
     }
-
-    if(ladderPresent) {
-        let ladder = new Ladder(x, y, w, h, `X ${ladderCount}`)
-        levelAssets.push(ladder);
-    }
-    if(logPresent) {
-        let log = new Log(x, y, w, h, `X ${logCount}`)
-        levelAssets.push(log);
-    }
-    if(stonePresent) {
-        let stone = new Stone(x, y, w, h, `X ${stoneCount}`)
-        levelAssets.push(stone);
-    }
-
     return new Level(levelObjects, levelAssets);
   }
 }

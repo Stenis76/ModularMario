@@ -13,7 +13,13 @@ class LevelObject {
 
     public draw() {
         fill(0, 0, 0, 0);
-        noStroke();
+        stroke(0, 0, 0, 0);
         rect(this.x, this.y, this.w, this.h)
+    }
+
+    public drawText(amount: number) {
+        fill(0);
+        textSize(32);
+        text(`X ${amount}`, this.x + this.x, this.y + this.y);
     }
 }

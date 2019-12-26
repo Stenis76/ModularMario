@@ -2,6 +2,8 @@ let gameController: any;
 let player: any;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
+let ladderImage: p5.Image;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -13,6 +15,7 @@ function preload() {
     // sound = (window as any).loadSound('../assets/mySound.wav');
     blockImage = loadImage('./assets/images/dirtblock.png');
     finishImage = loadImage('./assets/images/cigarette.png');
+    ladderImage = loadImage('./assets/images/ladder.png');
 }
 
 /**
@@ -38,13 +41,13 @@ function draw() {
     background(21);
     gameController.drawGameArea();
     gameController.drawSidebar();
-    gameController.drawLevel(); 
-    gameController.drawAssets();
-    gameController.buildPhase(); 
+    gameController.drawLevel();
+    gameController.drawAssets();    
     player.show();
     player.run();
     player.update();
     gameController.collisionDetection(player);
+    gameController.buildPhase();    
 }
 
 /**
@@ -53,6 +56,9 @@ function draw() {
 function keyPressed() {
     if(keyCode == 32) {
         player.jump();
+    }
+    if(keyCode == 66) {
+        gameController.changeGamePhase();    
     }
 } 
 
