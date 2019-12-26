@@ -56,6 +56,13 @@ function keyPressed() {
   }
   }
 
+  function mousePressed() {
+    if (currentScreen == 0) {
+      currentScreen = 1;
+    }
+  }
+  
+
 /**
  *  Built in windowResize listener function in P5
  */
