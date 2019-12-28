@@ -1,6 +1,9 @@
 class GameController {
     private currentLevel: number = 0;   //Keep track of currentLevel
-    public inBuildPhase: boolean = false;   //Activated when in building phase  
+    public inBuildPhase: boolean = false; 
+    public ladders: Array<LevelObject> = [];
+    public logs: Array<LevelObject> = [];
+    public stones: Array<LevelObject>= [];  //Activated when in building phase  
     
     private levelFactory = new LevelFactory();
     public level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
@@ -18,7 +21,10 @@ class GameController {
 
     //Loop list of level objects and draw them
     public drawLevel() {        
-        let char: number = 0;        
+        let char: number = 0; 
+        this.ladders = [];
+        this.logs = [];
+        this.stones = [];       
         
         for(let i = 0; i < this.level.levelObjects.length; i++){
             this.level.levelObjects[i].draw();
@@ -32,38 +38,35 @@ class GameController {
 
     //Loop list of level assets and draw them
     public drawAssets() {
-        let ladders: Array<LevelObject> = [];
-        let logs: Array<LevelObject> = [];
-        let stones: Array<LevelObject> = [];
 
         for(let i = 0; i < this.level.levelAssets.length; i++) {            
             switch (this.level.levelAssets[i].constructor) {
                 case Ladder:
-                    ladders.push(this.level.levelAssets[i]);
+                    this.ladders.push(this.level.levelAssets[i]);
                     break;
                 case Log:
-                    logs.push(this.level.levelAssets[i]);                    
+                    this.logs.push(this.level.levelAssets[i]);                    
                     break;
                 case Stone:
-                    stones.push(this.level.levelAssets[i]);
+                    this.stones.push(this.level.levelAssets[i]);
                     break;
             }  
             this.level.levelAssets[i].draw();           
         }
 
-        for (let i = 0; i < ladders.length; i++) {
-            if (i == ladders.length - 1) {
-                ladders[i].drawText(ladders.length);
+        for (let i = 0; i < this.ladders.length; i++) {
+            if (i == this.ladders.length - 1) {
+                this.ladders[i].drawText(this.ladders.length);
             }
         }
-        for (let i = 0; i < logs.length; i++) {
-            if (i == logs.length - 1) {
-                logs[i].drawText(logs.length);
+        for (let i = 0; i < this.logs.length; i++) {
+            if (i == this.logs.length - 1) {
+                this.logs[i].drawText(this.logs.length);
             }
         }
-        for (let i = 0; i < stones.length; i++) {
-            if (i == stones.length - 1) {
-                stones[i].drawText(stones.length);
+        for (let i = 0; i < this.stones.length; i++) {
+            if (i == this.stones.length - 1) {
+                this.stones[i].drawText(this.stones.length);
             }
         }
     }
@@ -77,7 +80,7 @@ class GameController {
     }
 
     public buildPhase() { 
-        let builder = new Builder(this.level, this.inBuildPhase);      
+        let builder = new Builder(this.level.levelObjects, this.ladders, this.logs, this.stones, this.inBuildPhase);      
         builder.inBuildMode();
     }
 
