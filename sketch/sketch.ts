@@ -56,11 +56,6 @@ function keyPressed() {
   }
   }
 
-  function mousePressed() {
-    if (currentScreen == 0) {
-      currentScreen = 1;
-    }
-  }
   
 
 /**
