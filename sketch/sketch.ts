@@ -28,6 +28,7 @@ function setup() {
     fullscreen();
     gameController = new GameController();
     player = gameController.drawLevel();          
+
 }
 
 /**
@@ -38,13 +39,19 @@ function setup() {
 function draw() {
     background(21);
     gameController.drawGameArea();
+    gameController.drawSidebar();
     gameController.drawLevel(); 
-    player.show()   
+    gameController.drawAssets();
+    gameController.buildPhase(); 
+    player.show();
     player.run();
     player.update();
     gameController.collisionDetection(player);    
 }
 
+/**
+ * Handle keyboard input
+ */
 function keyPressed() {
     if(keyCode == 32) {
         player.jump();
