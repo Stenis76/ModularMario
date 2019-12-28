@@ -12,7 +12,7 @@ function preload() {
     // Tyvärr har jag inte fått till den globala typningen för
     // inladdningen av ljud men fungerar bra enligt nedan..
     // sound = (window as any).loadSound('../assets/mySound.wav');
-    blockImage = loadImage('./assets/images/dirtblock.png');
+    blockImage = loadImage('./assets/images/skullblock.png');
     finishImage = loadImage('./assets/images/cigarette.png');
 }
 
