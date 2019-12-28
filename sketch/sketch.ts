@@ -56,8 +56,6 @@ function keyPressed() {
   }
   }
 
-  
-
 /**
  *  Built in windowResize listener function in P5
  */

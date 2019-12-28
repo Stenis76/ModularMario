@@ -1,13 +1,13 @@
-let currentScreen: number = 0;
 let infoText: string = "Ett puzzelspel blandat med plattformsspel. \n Du skall bygga en bana för att hjälpa den stackars Jonathan \n  till sin efterlängtade ciggarett. \n Du kan när du vill pausa och gå in i byggfasen och börja om. \n Akta dig för grönsakerna på botten, \n Jonathan avskyr dem och du vet inte vad som kan hända..";
+let currentScreen: number = 0;
 
 class SplashScreen {
-  w: number;
-  h: number;
-  x: number;
-  y: number;
+ w: number;
+ h: number;
+ x: number;
+ y: number;
 
-  private constructor(w: number, h: number, x: number, y: number) {
+  public constructor(w: number, h: number, x: number, y: number) {
     this.w = w;
     this.h = h;
     this.x = x;
