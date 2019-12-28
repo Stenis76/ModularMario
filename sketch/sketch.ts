@@ -2,6 +2,7 @@ let gameController: any;
 let player: any;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -26,7 +27,8 @@ function setup() {
     frameRate(60);
     fullscreen();
     gameController = new GameController();
-    player = gameController.drawLevel();      
+    player = gameController.drawLevel();          
+
 }
 
 /**
@@ -44,7 +46,7 @@ function draw() {
     player.show();
     player.run();
     player.update();
-    gameController.collisionDetection(player);
+    gameController.collisionDetection(player);    
 }
 
 /**
