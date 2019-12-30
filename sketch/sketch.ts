@@ -30,7 +30,7 @@ function setup() {
   spawnPoint = gameController.drawLevel();
 
   player = new Character(spawnPoint.posX, spawnPoint.posY, spawnPoint.cellUnit);
-  collidable = 
+//   collidable = 
 }
 
 /**
