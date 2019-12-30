@@ -16,6 +16,4 @@ class LevelObject {
         noStroke();
         rect(this.x, this.y, this.w, this.h)
     }
-    // public collide() {
-    // }
 }

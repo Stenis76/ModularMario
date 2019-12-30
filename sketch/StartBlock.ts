@@ -8,22 +8,4 @@ class StartBlock extends LevelObject {
         fill('red');
         rect(this.x, this.y, this.w, this.h);
     }
-    public spawnPointX() {
-        return this.x
-    }
-    public spawnPointY() {
-        return this.y
-    }
-    public collide() {
-    
-        console.log(
-          "Start Block" +
-            "\n" +
-            "X-position : " +
-            this.x +
-            "\n" +
-            "Y-position : " +
-            this.y
-        );
-      }
 }

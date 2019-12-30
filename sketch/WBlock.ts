@@ -17,15 +17,22 @@ class Block extends LevelObject {
     image(blockImage, this.x, this.y, this.w, this.h);
     redraw();
   }
-  public collide() {
-    console.log(
-      "Normal Block" +
-        "\n" +
-        "X-position : " +
-        this.x +
-        "\n" +
-        "Y-position : " +
-        this.y
-    );
+ 
+  public collide(character: Character) {
+    let block = {
+      top: this.y,
+      bottom: this.y + this.h,
+      left: this.x,
+      right: this.x + this.w,
+      
+      width: this.w,
+      height: this.h
+    };
+    console.log(character);
+    
+    if(character) {
+      console.log('yes');
+    }
+    
   }
 }

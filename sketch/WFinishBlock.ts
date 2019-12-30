@@ -9,14 +9,14 @@ class FinishBlock extends LevelObject {
   }
   public collide() {
 
-    console.log(
-      "Finish Block" +
-        "\n" +
-        "X-position : " +
-        this.x +
-        "\n" +
-        "Y-position : " +
-        this.y
-    );
+    // console.log(
+    //   "Finish Block" +
+    //     "\n" +
+    //     "X-position : " +
+    //     this.x +
+    //     "\n" +
+    //     "Y-position : " +
+    //     this.y
+    // );
   }
 }
