@@ -14,7 +14,6 @@ class Ladder extends LevelObject {
     }
     
     public draw() {
-        fill(0);
         image(ladderImage, this.x, this.y, this.w, this.h);        
     }
 

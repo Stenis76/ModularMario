@@ -14,8 +14,7 @@ class Log extends LevelObject {
     }
     
     public draw() {
-        fill(0);
-        rect(this.x, this.y, this.w, this.h);
+        image(logImage, this.x, this.y, this.w, this.h);  
     }
 
     public drawText(amount: number) {       

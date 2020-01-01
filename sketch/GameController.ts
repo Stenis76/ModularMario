@@ -1,5 +1,5 @@
 class GameController {
-    private currentLevel: number = 0;   //Keep track of currentLevel
+    private currentLevel: number = 1;   //Keep track of currentLevel
     public inBuildPhase: boolean = false; 
     public ladders: Array<LevelObject> = [];
     public logs: Array<LevelObject> = [];
@@ -9,7 +9,13 @@ class GameController {
     public level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
 
     private sidebar = new Sidebar();
-    private gameArea = new GameArea();    
+    private gameArea = new GameArea();
+    
+    // public drawBuildLevel() {
+    //     if (this.inBuildPhase) {
+    //         this.level = this.levelFactory.getLevel(0); //Något annat än this.currentLevel för att hitta build nivån.
+    //     }
+    // }
     
     public drawGameArea() { //Draw the GameArea
         this.gameArea.draw();
@@ -79,9 +85,12 @@ class GameController {
         }
     }
 
-    public buildPhase() { 
-        let builder = new Builder(this.level.levelObjects, this.ladders, this.logs, this.stones, this.inBuildPhase);      
-        builder.inBuildMode();
+    public buildPhase(assetNumber: number, ladderNbr: number) {
+        if (this.inBuildPhase) {
+            let builder = new Builder(this.inBuildPhase);      
+            builder.inBuildMode(assetNumber, ladderNbr, this.ladders, this.logs, this.stones); 
+
+        }
     }
 
     //Keep track of player versus all collidable objects
