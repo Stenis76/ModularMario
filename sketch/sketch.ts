@@ -2,6 +2,15 @@ let gameController: any;
 let player: any;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
+let ladderImage: p5.Image;
+let stoneImage: p5.Image;
+let logImage: p5.Image;
+let assetNumber: number;
+let ladderNbr : number = -1;
+let logNbr : number = -1;
+let stoneNbr : number = -1;
+
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -13,6 +22,11 @@ function preload() {
   // sound = (window as any).loadSound('../assets/mySound.wav');
   blockImage = loadImage("./assets/images/dirtblock.png");
   finishImage = loadImage("./assets/images/cigarette.png");
+  blockImage = loadImage('./assets/images/skullblock.png');
+  finishImage = loadImage('./assets/images/cigarette.png');
+  ladderImage = loadImage('./assets/images/ladder.png');
+  logImage = loadImage('./assets/images/log.png');
+  stoneImage = loadImage('./assets/images/stone.png');
 }
 
 /**
@@ -43,18 +57,51 @@ function draw() {
   if(currentScreen == 1){
   gameController.drawGameArea();
   gameController.drawLevel();
+  gameController.drawAssets();
   player.show();
   player.run();
   player.update();
   gameController.collisionDetection(player);
+  gameController.buildPhase(assetNumber, ladderNbr); 
+    if (mouseIsPressed) {
+        assetNumber = 0;
+    }
   }
 }
 
+/**
+ * Handle keyboard input
+ */
 function keyPressed() {
-  if (keyCode == 32) {
-    player.jump();
-  }
-  }
+    let ladderLength: number = gameController.ladders.length;    
+    let logLength: number = gameController.logs.length;    
+    let stoneLength: number = gameController.stones.length;    
+
+    if(keyCode == 32) {
+        player.jump();
+    }
+    if(keyCode == 66) {
+        gameController.changeGamePhase();    
+    }
+    if(keyCode == 49) {
+        assetNumber = 1;
+        if(ladderNbr < ladderLength - 1) {
+            ladderNbr++
+        }
+    }
+    if(keyCode == 50) {
+        assetNumber = 2;
+        if(logNbr < logLength - 1) {
+            logNbr++
+        }
+    }
+    if(keyCode == 51) {
+        assetNumber = 3;
+        if(stoneNbr < stoneLength - 1) {
+            stoneNbr++
+        }
+    }
+} 
 
 /**
  *  Built in windowResize listener function in P5
