@@ -1,29 +1,23 @@
 class GameController {
-    private currentLevel: number = 1;   //Keep track of currentLevel
-    public inBuildPhase: boolean = false; 
-    public ladders: Array<LevelObject> = [];
-    public logs: Array<LevelObject> = [];
-    public stones: Array<LevelObject>= [];  //Activated when in building phase  
-    
-    private levelFactory = new LevelFactory();
-    public level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
+  splashScreen = new SplashScreen(windowWidth, windowHeight, 0, 0);
+  private gameArea = new GameArea();
+  private sidebar = new Sidebar();
+  public inBuildPhase: boolean = false; 
+  public ladders: Array<LevelObject> = [];
+  public logs: Array<LevelObject> = [];
+  public stones: Array<LevelObject>= [];  //Activated when in building phase 
+  private currentLevel: number = 0; //Keep track of currentLevel
+  private levelFactory = new LevelFactory();
+  level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
+  
+  //Draw the gameArea
+  public drawGameArea() {    
+    this.gameArea.draw();
+  }
 
-    private sidebar = new Sidebar();
-    private gameArea = new GameArea();
-    
-    // public drawBuildLevel() {
-    //     if (this.inBuildPhase) {
-    //         this.level = this.levelFactory.getLevel(0); //Något annat än this.currentLevel för att hitta build nivån.
-    //     }
-    // }
-    
-    public drawGameArea() { //Draw the GameArea
-        this.gameArea.draw();
-    }
-        
-    public drawSidebar() {  //Draw the Sidebar
-        this.sidebar.draw(this.currentLevel);      
-    }
+  public drawSidebar() {  //Draw the Sidebar
+    this.sidebar.draw(this.currentLevel);     
+}
 
     //Loop list of level objects and draw them
     public drawLevel() {        
@@ -41,7 +35,13 @@ class GameController {
         }         
         return this.level.levelObjects[char];   //Return the Character object    
     }
-
+    
+    // public drawBuildLevel() {
+    //     if (this.inBuildPhase) {
+    //         this.level = this.levelFactory.getLevel(0); //Något annat än this.currentLevel för att hitta build nivån.
+    //     }
+    // }        
+  
     //Loop list of level assets and draw them
     public drawAssets() {
 
@@ -118,4 +118,4 @@ class GameController {
              } 
         }
     }
-}
+  }

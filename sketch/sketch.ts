@@ -17,15 +17,16 @@ let stoneNbr : number = -1;
  * sound files, images etc...
  */
 function preload() {
-    // Tyvärr har jag inte fått till den globala typningen för
-    // inladdningen av ljud men fungerar bra enligt nedan..
-    // sound = (window as any).loadSound('../assets/mySound.wav');
-    blockImage = loadImage('./assets/images/skullblock.png');
-    finishImage = loadImage('./assets/images/cigarette.png');
-    ladderImage = loadImage('./assets/images/ladder.png');
-    logImage = loadImage('./assets/images/log.png');
-    stoneImage = loadImage('./assets/images/stone.png');
-
+  // Tyvärr har jag inte fått till den globala typningen för
+  // inladdningen av ljud men fungerar bra enligt nedan..
+  // sound = (window as any).loadSound('../assets/mySound.wav');
+  blockImage = loadImage("./assets/images/dirtblock.png");
+  finishImage = loadImage("./assets/images/cigarette.png");
+  blockImage = loadImage('./assets/images/skullblock.png');
+  finishImage = loadImage('./assets/images/cigarette.png');
+  ladderImage = loadImage('./assets/images/ladder.png');
+  logImage = loadImage('./assets/images/log.png');
+  stoneImage = loadImage('./assets/images/stone.png');
 }
 
 /**
@@ -35,11 +36,11 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    createCanvas(windowWidth, windowHeight);
-    frameRate(60);
-    fullscreen();
-    gameController = new GameController();
-    player = gameController.drawLevel();
+  createCanvas(windowWidth, windowHeight);
+  frameRate(60);
+  fullscreen();
+  gameController = new GameController();
+  player = gameController.drawLevel();
 }
 
 /**
@@ -48,19 +49,26 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-    background(21);
-    gameController.drawGameArea();
-    gameController.drawSidebar();
-    gameController.drawLevel();
-    gameController.drawAssets();    
-    player.show();
-    player.run();
-    player.update();
-    gameController.collisionDetection(player);
-    gameController.buildPhase(assetNumber, ladderNbr); 
+  background(21);
+    if(currentScreen == 0){
+    gameController.splashScreen.draw();
+  }
+
+  if(currentScreen == 1){
+  background(200);
+  gameController.drawGameArea();
+  gameController.drawLevel();
+  gameController.drawSidebar();
+  gameController.drawAssets();
+  player.show();
+  player.run();
+  player.update();
+  gameController.collisionDetection(player);
+  gameController.buildPhase(assetNumber, ladderNbr); 
     if (mouseIsPressed) {
         assetNumber = 0;
     }
+  }
 }
 
 /**
@@ -101,5 +109,5 @@ function keyPressed() {
  *  Built in windowResize listener function in P5
  */
 function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight);
 }
