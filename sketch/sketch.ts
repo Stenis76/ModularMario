@@ -1,6 +1,6 @@
 let gameController: any;
 let player: any;
-let spawnPoint: any;
+let spawnPoint: object;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
 /**
@@ -27,10 +27,10 @@ function setup() {
   frameRate(60);
   fullscreen();
   gameController = new GameController();
-  spawnPoint = gameController.drawLevel();
-
-  player = new Character(spawnPoint.posX, spawnPoint.posY, spawnPoint.cellUnit);
-//   collidable = 
+  
+//   spawnPoint = gameController.drawLevel();
+    player = gameController.spawnPlayer();
+    
 }
 
 /**
@@ -41,13 +41,11 @@ function setup() {
 function draw() {
   background(21);
   gameController.drawGameArea();
-  gameController.drawLevel();
+  gameController.drawLevel(player);
 
   player.show();
   player.run();
   player.update();
-
-  // gameController.collisionDetection(player);
 }
 
 function keyPressed() {

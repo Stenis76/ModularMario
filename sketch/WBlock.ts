@@ -17,22 +17,20 @@ class Block extends LevelObject {
     image(blockImage, this.x, this.y, this.w, this.h);
     redraw();
   }
- 
-  public collide(character: Character) {
+
+  public collide(player: object) {
     let block = {
       top: this.y,
       bottom: this.y + this.h,
       left: this.x,
       right: this.x + this.w,
-      
+        
       width: this.w,
       height: this.h
     };
-    console.log(character);
-    
-    if(character) {
-      console.log('yes');
-    }
+
+
+    // console.log(player);
     
   }
 }

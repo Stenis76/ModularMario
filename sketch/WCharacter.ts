@@ -1,6 +1,6 @@
 class Character {
   private GA = new GameArea();
-  
+
   public x: number;
   public y: number;
   public w: number;
@@ -8,24 +8,26 @@ class Character {
   public vy: number;
   public vx: number;
   public move: number;
-  
+  public cellUnit: number;
+
   private gravity: number;
   private friction: number;
 
   public constructor(x: number, y: number, cellUnit: number) {
+    this.cellUnit = cellUnit;
     this.x = x;
     this.y = y;
     this.w = cellUnit;
     this.h = cellUnit;
     this.vy = 0;
     this.vx = 0;
-    this.gravity = 1;
-    this.friction = 0.8;
+    this.gravity = cellUnit / 50;
+    this.friction = cellUnit / 60;
     this.move = 0;
   }
 
   public jump() {
-    this.vy = -15;
+    this.vy = -this.cellUnit / 3;
   }
 
   public update() {
@@ -40,16 +42,16 @@ class Character {
   public run() {
     if (keyIsDown(65)) {
       // move backwards
-      this.move = -1.5;
+      this.move = -this.cellUnit / 30;
       if (abs(this.vx) < 6) {
-        this.vx += 1 * this.move;
+        this.vx += this.move;
       }
     }
     if (keyIsDown(68)) {
       // move forward
-      this.move = 1.5;
+      this.move = this.cellUnit / 30;
       if (abs(this.vx) < 6) {
-        this.vx += 1 * this.move;
+        this.vx += this.move;
       }
     }
 

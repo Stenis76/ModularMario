@@ -10,9 +10,9 @@ class GameController {
   }
 
   //Loop list of level objects and draw them
-  public drawLevel() {
+  public drawLevel(player:any) {
     let spawnPoint: object = {};
-    let collidable: Array<object> = [];
+    
 
     for (let i = 0; i < this.level.levelObjects.length; i++) {
       this.level.levelObjects[i].draw();
@@ -25,13 +25,18 @@ class GameController {
         };
       }
       if (this.level.levelObjects[i].constructor === Block) {
-        collidable.push(this.level.levelObjects[i]);
+        this.level.levelObjects[i].collide(player);
       }
     }
-
     return spawnPoint; //return the point where the character shall be placed
   }
 
+  public spawnPlayer() {
+    spawnPoint = this.drawLevel();
+    player = new Character(spawnPoint.posX, spawnPoint.posY, spawnPoint.cellUnit);
+    
+    return player;
+  }
   /*
   //Keep track of player versus all collidable objects
   public collisionDetection(character: Character) {
