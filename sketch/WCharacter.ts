@@ -42,14 +42,14 @@ class Character {
   public run() {
     if (keyIsDown(65)) {
       // move backwards
-      this.move = -this.cellUnit / 30;
+      this.move = -this.cellUnit * 0.05;
       if (abs(this.vx) < 6) {
         this.vx += this.move;
       }
     }
     if (keyIsDown(68)) {
       // move forward
-      this.move = this.cellUnit / 30;
+      this.move = this.cellUnit * 0.05;
       if (abs(this.vx) < 6) {
         this.vx += this.move;
       }
