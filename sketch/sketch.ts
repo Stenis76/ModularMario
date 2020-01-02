@@ -10,6 +10,7 @@ let ladderNbr : number = -1;
 let logNbr : number = -1;
 let stoneNbr : number = -1;
 
+
 /**
  * Built in preload function in P5
  * This is a good place to load assets such as
@@ -38,7 +39,7 @@ function setup() {
     frameRate(60);
     fullscreen();
     gameController = new GameController();
-    player = gameController.drawLevel();    
+    player = gameController.drawLevel();
 }
 
 /**
@@ -59,7 +60,7 @@ function draw() {
     gameController.buildPhase(assetNumber, ladderNbr); 
     if (mouseIsPressed) {
         assetNumber = 0;
-    }   
+    }
 }
 
 /**
