@@ -1,4 +1,3 @@
-let infoText: string = "Ett puzzelspel blandat med plattformsspel. \n Du skall bygga en bana för att hjälpa den stackars Jonathan \n  till sin efterlängtade ciggarett. \n Du kan när du vill pausa och gå in i byggfasen och börja om. \n Akta dig för grönsakerna på botten, \n Jonathan avskyr dem och du vet inte vad som kan hända..";
 let currentScreen: number = 0;
 
 class SplashScreen {
@@ -15,6 +14,7 @@ class SplashScreen {
   }
 
   draw() {
+    let infoText: string = "Ett puzzelspel blandat med plattformsspel. \n Du skall bygga en bana för att hjälpa den stackars Jonathan \n  till sin efterlängtade ciggarett. \n Du kan när du vill pausa och gå in i byggfasen och börja om. \n Akta dig för grönsakerna på botten, \n Jonathan avskyr dem och du vet inte vad som kan hända..";
     fill("black");
     rect(this.x, this.y, this.w, this.h);
     fill("white");
