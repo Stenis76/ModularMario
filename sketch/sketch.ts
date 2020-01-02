@@ -55,8 +55,10 @@ function draw() {
   }
 
   if(currentScreen == 1){
+  background(200);
   gameController.drawGameArea();
   gameController.drawLevel();
+  gameController.drawSidebar();
   gameController.drawAssets();
   player.show();
   player.run();
