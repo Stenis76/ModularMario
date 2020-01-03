@@ -16,15 +16,4 @@ class Ladder extends LevelObject {
     public draw() {        
         image(ladderImage, this.x, this.y, this.w, this.h);       
     }
-
-    public drawText(amount: number) {       
-        fill(0);
-        textSize(32);
-        if (amount > 0) {
-            text(`X ${amount}`, this.x + this.w, this.y);  
-        } else {
-            text(`X 0`, this.x + this.w, this.y); 
-        }
-              
-    }
 }

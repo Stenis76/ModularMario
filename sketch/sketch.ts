@@ -51,14 +51,7 @@ function setup() {
  */
 function draw() {
   background(21);
-  gameController.drawGameArea();
-  gameController.drawLevel(player);
-
-  player.show();
-  player.run();
-  player.update();
-
-    if(currentScreen == 0){
+  if(currentScreen == 0){
     gameController.splashScreen.draw();
   }
 
@@ -73,7 +66,7 @@ function draw() {
   player.run();
   player.update();
     
-  gameController.collisionDetection(player);
+  //gameController.collisionDetection(player);
   gameController.buildPhase(assetNumber); 
     if (mouseIsPressed) {
         assetNumber = 0;

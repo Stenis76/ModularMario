@@ -69,11 +69,11 @@ class LevelFactory {
     for (let i = 0; i < this.levels[currentLevel].layout.length; i++) {
       for (let j = 0; j < this.levels[currentLevel].layout[i].length; j++) {
         switch (this.levels[currentLevel].layout[i][j]) {
-          case 0: {
-            let emptySpace = new EmptySpace(x, y, w, h);
-            levelObjects.push(emptySpace);
-            break;
-          }
+          // case 0: {
+          //   let emptySpace = new EmptySpace(x, y, w, h);
+          //   levelObjects.push(emptySpace);
+          //   break;
+          // }
           case 1:
             let block = new Block(x, y, w, h, false);
             levelObjects.push(block);
