@@ -4,11 +4,7 @@ class LevelFactory {
   private levels: Array<{
     assets: Array<Number>;
     layout: Array<Array<Number>>;
-  }> = [
-    // {
-    //   assets: //Array från builder med assets som skall målas till vänster,
-    //   layout: //Array från builder med aktuell level och assets som har målats ut
-    // },
+  }> = [ 
     {
       assets: [1, 1, 2, 3, 3, 3, 3],
       layout: [

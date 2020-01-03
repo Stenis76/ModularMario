@@ -6,20 +6,25 @@ class Ladder extends LevelObject {
     public h: number;
 
     constructor(x: number, y: number, w: number, h: number) {
-        super(x, y , w, h);
+        super(x, y, w, h);
         this.x = this.sidebar.w / 3;
         this.y = this.sidebar.h * 0.2;
-        this.w = 25;
-        this.h = 50;
+        this.w = 30;
+        this.h = 60;
     }
     
-    public draw() {
-        image(ladderImage, this.x, this.y, this.w, this.h);        
+    public draw() {        
+        image(ladderImage, this.x, this.y, this.w, this.h);       
     }
 
     public drawText(amount: number) {       
         fill(0);
         textSize(32);
-        text(`X ${amount}`, this.x + this.w, this.y);        
+        if (amount > 0) {
+            text(`X ${amount}`, this.x + this.w, this.y);  
+        } else {
+            text(`X 0`, this.x + this.w, this.y); 
+        }
+              
     }
 }
