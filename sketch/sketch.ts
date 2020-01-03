@@ -57,7 +57,7 @@ function setup() {
 function draw() {
   background(21);
     if(currentScreen == 0){
-    gameController.splashScreen.draw();
+    gameController.splashScreen.draw()
   }
 
   if(currentScreen == 1){
