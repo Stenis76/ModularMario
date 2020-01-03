@@ -17,6 +17,7 @@ class Character extends LevelObject {
 
   public jump() {
     this.vy = -15;
+    jumpSound.play()
   }
 
   public update() {

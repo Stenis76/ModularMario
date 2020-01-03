@@ -10,6 +10,7 @@ let ladderNbr : number = -1;
 let logNbr : number = -1;
 let stoneNbr : number = -1;
 let mySong: any
+let jumpSound: any
 
 
 /**
@@ -28,7 +29,8 @@ function preload() {
   ladderImage = loadImage('./assets/images/ladder.png');
   logImage = loadImage('./assets/images/log.png');
   stoneImage = loadImage('./assets/images/stone.png');
-  mySong = (window as any).loadSound('./assets/sound/introtest.mp3');
+  mySong = (window as any).loadSound('./assets/sound/intro_game.mp3');
+  jumpSound = (window as any).loadSound('./assets/sound/hopp.wav')
 }
 
 /**
@@ -38,7 +40,7 @@ function preload() {
  * in the draw function below
  */
 function setup() {
-    mySong.setVolume(0.5);
+    mySong.setVolume(0.1);
     mySong.play();
     createCanvas(windowWidth, windowHeight);
     frameRate(60);
