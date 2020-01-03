@@ -9,6 +9,7 @@ class Character {
   public vx: number;
   public move: number;
   public cellUnit: number;
+  public onGround: boolean;
 
   private gravity: number;
   private friction: number;
@@ -17,17 +18,20 @@ class Character {
     this.cellUnit = cellUnit;
     this.x = x;
     this.y = y;
-    this.w = cellUnit;
-    this.h = cellUnit;
+    this.w = cellUnit * 0.7;
+    this.h = cellUnit * 0.9;
     this.vy = 0;
     this.vx = 0;
     this.gravity = cellUnit / 50;
     this.friction = cellUnit / 60;
     this.move = 0;
+    this.onGround = false;
   }
 
   public jump() {
-    this.vy = -this.cellUnit / 3;
+    // console.log(this.onGround);
+    this.vy = -15;
+    this.onGround = false;
   }
 
   public update() {
@@ -37,6 +41,8 @@ class Character {
     this.vx = this.vx * this.friction;
 
     this.y = constrain(this.y, 0, this.GA.h - this.h);
+
+    // console.log(this.onGround);
   }
 
   public run() {
