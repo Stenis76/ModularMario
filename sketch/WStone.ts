@@ -16,10 +16,4 @@ class Stone extends LevelObject {
     public draw() {
         image(stoneImage, this.x, this.y, this.w, this.h);  
     }
-
-    public drawText(amount: number) {       
-        fill(0);
-        textSize(32);
-        text(`X ${amount}`, this.x + this.w, this.y);        
-    }
 }

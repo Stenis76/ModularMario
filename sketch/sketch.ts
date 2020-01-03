@@ -73,7 +73,7 @@ function draw() {
   player.run();
   player.update();
     
-  gameController.collisionDetection(player);
+  //gameController.collisionDetection(player);
   gameController.buildPhase(assetNumber); 
     if (mouseIsPressed) {
         assetNumber = 0;
