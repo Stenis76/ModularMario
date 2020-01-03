@@ -6,9 +6,10 @@ let ladderImage: p5.Image;
 let stoneImage: p5.Image;
 let logImage: p5.Image;
 let assetNumber: number;
-let ladderNbr : number = -1;
-let logNbr : number = -1;
-let stoneNbr : number = -1;
+let ladderNbr: number = -1;
+let logNbr: number = -1;
+let stoneNbr: number = -1;
+let gameFont: p5.Font;
 
 
 /**
@@ -27,6 +28,7 @@ function preload() {
   ladderImage = loadImage('./assets/images/ladder.png');
   logImage = loadImage('./assets/images/log.png');
   stoneImage = loadImage('./assets/images/stone.png');
+  gameFont = loadFont('assets/VT323.ttf');
 }
 
 /**
@@ -64,7 +66,7 @@ function draw() {
   player.run();
   player.update();
   gameController.collisionDetection(player);
-  gameController.buildPhase(assetNumber, ladderNbr); 
+  gameController.buildPhase(assetNumber); 
     if (mouseIsPressed) {
         assetNumber = 0;
     }

@@ -9,7 +9,7 @@ class Builder {
         this.phase = phase;
     }
 
-    public inBuildMode(assetNumber: number, ladderNbr: number, ladders: Array<LevelObject>, logs: Array<LevelObject>, stones: Array<LevelObject>) {
+    public inBuildMode(assetNumber: number, ladders: Array<LevelObject>, logs: Array<LevelObject>, stones: Array<LevelObject>) {
         let cellUnit: number = this.gameArea.w / 20;
         let x: number = this.gameArea.x;
         let y: number = this.gameArea.y;
@@ -30,8 +30,7 @@ class Builder {
                                 ladders[ladderNbr].x = x;
                                 ladders[ladderNbr].y = y;                                               
                                 ladders[ladderNbr].w = w;
-                                ladders[ladderNbr].h = h * 2;                                
-
+                                ladders[ladderNbr].h = h * 2;
                             }                                                                         
                         }                                               
                         if (assetNumber == 2) {                            
@@ -40,8 +39,7 @@ class Builder {
                                 logs[logNbr].x = x;
                                 logs[logNbr].y = y;                                               
                                 logs[logNbr].w = w * 2;
-                                logs[logNbr].h = h;                                
-
+                                logs[logNbr].h = h;
                             }                                                                         
                         }                                               
                         if (assetNumber == 3) {                            
@@ -50,8 +48,7 @@ class Builder {
                                 stones[stoneNbr].x = x;
                                 stones[stoneNbr].y = y;                                               
                                 stones[stoneNbr].w = w;
-                                stones[stoneNbr].h = h;                                
-
+                                stones[stoneNbr].h = h;
                             }                                                                         
                         }                                               
                     }
@@ -61,6 +58,5 @@ class Builder {
                 y += h;
             }
         } 
-        //Skicka in till LevelFactory
     }    
 }

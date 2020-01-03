@@ -1,30 +1,26 @@
 class GameController {
-  splashScreen = new SplashScreen(windowWidth, windowHeight, 0, 0);
-  private gameArea = new GameArea();
-  private sidebar = new Sidebar();
-  public inBuildPhase: boolean = false; 
-  public ladders: Array<LevelObject> = [];
-  public logs: Array<LevelObject> = [];
-  public stones: Array<LevelObject>= [];  //Activated when in building phase 
-  private currentLevel: number = 0; //Keep track of currentLevel
-  private levelFactory = new LevelFactory();
-  level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
+    public splashScreen = new SplashScreen(windowWidth, windowHeight, 0, 0);
+    private gameArea = new GameArea();
+    private sidebar = new Sidebar();
+    public inBuildPhase: boolean = false; //Activated when in building phase 
+    public ladders: Array<LevelObject> = [];
+    public logs: Array<LevelObject> = [];
+    public stones: Array<LevelObject>= [];  
+    private currentLevel: number = 0; //Keep track of currentLevel
+    private levelFactory = new LevelFactory();
+    private level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
+    public laddersLeft: Array<LevelObject> = [];
+    public logsLeft: Array<LevelObject> = [];
+    public stonesLeft: Array<LevelObject> = [];
   
-  //Draw the gameArea
-  public drawGameArea() {    
+    //Draw the gameArea
+    public drawGameArea() {    
     this.gameArea.draw();
-  }
-
-  public drawSidebar() {  //Draw the Sidebar
-    this.sidebar.draw(this.currentLevel);     
-}
+    }
 
     //Loop list of level objects and draw them
     public drawLevel() {        
-        let char: number = 0; 
-        this.ladders = [];
-        this.logs = [];
-        this.stones = [];       
+        let char: number = 0;             
         
         for(let i = 0; i < this.level.levelObjects.length; i++){
             this.level.levelObjects[i].draw();
@@ -34,49 +30,65 @@ class GameController {
             } 
         }         
         return this.level.levelObjects[char];   //Return the Character object    
-    }
-    
-    // public drawBuildLevel() {
-    //     if (this.inBuildPhase) {
-    //         this.level = this.levelFactory.getLevel(0); //Något annat än this.currentLevel för att hitta build nivån.
-    //     }
-    // }        
+    }       
   
     //Loop list of level assets and draw them
     public drawAssets() {
+        this.ladders = [];
+        this.logs = [];
+        this.stones = [];  
+        this.laddersLeft = [];
+        this.logsLeft = [];
+        this.stonesLeft = [];
 
+        //Divide Ladders Logs and Stones in to different arrays
         for(let i = 0; i < this.level.levelAssets.length; i++) {            
             switch (this.level.levelAssets[i].constructor) {
                 case Ladder:
                     this.ladders.push(this.level.levelAssets[i]);
+                    if (this.level.levelAssets[i].x < this.sidebar.w){
+                        this.laddersLeft.push(this.level.levelAssets[i]);
+                    }                                       
                     break;
                 case Log:
-                    this.logs.push(this.level.levelAssets[i]);                    
+                    this.logs.push(this.level.levelAssets[i]);
+                    if (this.level.levelAssets[i].x < this.sidebar.w){
+                        this.logsLeft.push(this.level.levelAssets[i]);
+                    }                       
                     break;
                 case Stone:
                     this.stones.push(this.level.levelAssets[i]);
+                    if (this.level.levelAssets[i].x < this.sidebar.w){
+                        this.stonesLeft.push(this.level.levelAssets[i]);
+                    }
                     break;
             }  
             this.level.levelAssets[i].draw();           
         }
 
-        for (let i = 0; i < this.ladders.length; i++) {
-            if (i == this.ladders.length - 1) {
-                this.ladders[i].drawText(this.ladders.length);
-            }
-        }
-        for (let i = 0; i < this.logs.length; i++) {
-            if (i == this.logs.length - 1) {
-                this.logs[i].drawText(this.logs.length);
-            }
-        }
-        for (let i = 0; i < this.stones.length; i++) {
-            if (i == this.stones.length - 1) {
-                this.stones[i].drawText(this.stones.length);
-            }
-        }
+        
+
+        //Display number of assets left 
+        // this.laddersLeft[0].drawText(this.laddersLeft.length);
+
+        // for (let i = 0; i < this.logsLeft.length; i++) {        
+        //     if (i == this.logsLeft.length - 1) {        
+        //         this.logsLeft[i].drawText(this.logsLeft.length);                
+        //     }
+        // }
+        // for (let i = 0; i < this.stonesLeft.length; i++) {        
+        //     if (i == this.stonesLeft.length - 1) {        
+        //         this.stonesLeft[i].drawText(this.stonesLeft.length);                
+        //     }
+        // }
     }
 
+        //Draw the Sidebar
+    public drawSidebar() {  
+        this.sidebar.draw(this.currentLevel, this.laddersLeft, this.logsLeft, this.stonesLeft);     
+    }
+
+    //Go into buildphase
     public changeGamePhase() {
         if (this.inBuildPhase == false) {
             this.inBuildPhase = true;
@@ -85,11 +97,11 @@ class GameController {
         }
     }
 
-    public buildPhase(assetNumber: number, ladderNbr: number) {
+    //When in buildphase, let builder class handle drawing of assets to gameArea
+    public buildPhase(assetNumber: number) {
         if (this.inBuildPhase) {
             let builder = new Builder(this.inBuildPhase);      
-            builder.inBuildMode(assetNumber, ladderNbr, this.ladders, this.logs, this.stones); 
-
+            builder.inBuildMode(assetNumber, this.ladders, this.logs, this.stones);
         }
     }
 
