@@ -1,5 +1,6 @@
 let gameController: any;
 let player: any;
+let spawnPoint: object;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
 let ladderImage: p5.Image;
@@ -21,8 +22,6 @@ function preload() {
   // Tyvärr har jag inte fått till den globala typningen för
   // inladdningen av ljud men fungerar bra enligt nedan..
   // sound = (window as any).loadSound('../assets/mySound.wav');
-  blockImage = loadImage("./assets/images/dirtblock.png");
-  finishImage = loadImage("./assets/images/cigarette.png");
   blockImage = loadImage('./assets/images/skullblock.png');
   finishImage = loadImage('./assets/images/cigarette.png');
   ladderImage = loadImage('./assets/images/ladder.png');
@@ -42,7 +41,7 @@ function setup() {
   frameRate(60);
   fullscreen();
   gameController = new GameController();
-  player = gameController.drawLevel();
+  player = gameController.spawnPlayer();
 }
 
 /**
@@ -52,6 +51,13 @@ function setup() {
  */
 function draw() {
   background(21);
+  gameController.drawGameArea();
+  gameController.drawLevel(player);
+
+  player.show();
+  player.run();
+  player.update();
+
     if(currentScreen == 0){
     gameController.splashScreen.draw();
   }
@@ -62,9 +68,11 @@ function draw() {
   gameController.drawLevel();
   gameController.drawSidebar();
   gameController.drawAssets();
+    
   player.show();
   player.run();
   player.update();
+    
   gameController.collisionDetection(player);
   gameController.buildPhase(assetNumber); 
     if (mouseIsPressed) {
@@ -81,7 +89,7 @@ function keyPressed() {
     let logLength: number = gameController.logs.length;    
     let stoneLength: number = gameController.stones.length;    
 
-    if(keyCode == 32) {
+    if(keyCode == 32 && player.onGround) {
         player.jump();
     }
     if(keyCode == 66) {

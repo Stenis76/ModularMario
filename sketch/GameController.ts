@@ -1,4 +1,8 @@
 class GameController {
+  private currentLevel: number = 0; //Keep track of currentLevel
+  levelFactory = new LevelFactory();
+  level: Level = this.levelFactory.getLevel(this.currentLevel); //Save array of level objects in level variable
+  
     public splashScreen = new SplashScreen(windowWidth, windowHeight, 0, 0);
     private gameArea = new GameArea();
     private sidebar = new Sidebar();
@@ -12,6 +16,49 @@ class GameController {
     public laddersLeft: Array<LevelObject> = [];
     public logsLeft: Array<LevelObject> = [];
     public stonesLeft: Array<LevelObject> = [];
+
+  //Draw the gameArea
+  public drawGameArea() {
+    let gameArea = new GameArea();
+    gameArea.draw();
+  }
+
+  //Loop list of level objects and draw them
+  public drawLevel() {
+    let spawnPoint: object = {};
+
+    for (let i = 0; i < this.level.levelObjects.length; i++) {
+      this.level.levelObjects[i].draw();
+
+      if (this.level.levelObjects[i].constructor === StartBlock) {
+        spawnPoint = {
+          posX: this.level.levelObjects[i].x,
+          posY: this.level.levelObjects[i].y,
+          cellUnit: this.level.levelObjects[i].w
+        };
+      }
+      if (this.level.levelObjects[i].constructor === Block && player) {
+        this.level.levelObjects[i].collide();
+      }
+      if (this.level.levelObjects[i].constructor === FinishBlock && player) {
+        this.level.levelObjects[i].collide();
+      }
+    }
+    return spawnPoint; //return the point where the character shall be placed
+  }
+
+  public spawnPlayer() {
+    spawnPoint = this.drawLevel();
+    player = new Character(
+      spawnPoint.posX,
+      spawnPoint.posY,
+      spawnPoint.cellUnit
+    );
+
+    return player;
+  }
+}
+
   
     //Draw the gameArea
     public drawGameArea() {    
@@ -65,22 +112,6 @@ class GameController {
             }  
             this.level.levelAssets[i].draw();           
         }
-
-        
-
-        //Display number of assets left 
-        // this.laddersLeft[0].drawText(this.laddersLeft.length);
-
-        // for (let i = 0; i < this.logsLeft.length; i++) {        
-        //     if (i == this.logsLeft.length - 1) {        
-        //         this.logsLeft[i].drawText(this.logsLeft.length);                
-        //     }
-        // }
-        // for (let i = 0; i < this.stonesLeft.length; i++) {        
-        //     if (i == this.stonesLeft.length - 1) {        
-        //         this.stonesLeft[i].drawText(this.stonesLeft.length);                
-        //     }
-        // }
     }
 
         //Draw the Sidebar
@@ -105,29 +136,5 @@ class GameController {
         }
     }
 
-    //Keep track of player versus all collidable objects
-    public collisionDetection(character: Character) {        
-        let collideBlocks: Array<LevelObject> = []; 
-
-        //Loop through all objects and save the collideable ones in new array
-        for(let i = 0; i < this.level.levelObjects.length; i++) {
-            if (this.level.levelObjects[i].constructor == Block){
-                collideBlocks.push(this.level.levelObjects[i]);
-            }
-        }
-        
-        //Determine what collision is and what should happen when collision occur
-        for(let i = 0; i < collideBlocks.length; i++){
-            //let d = dist(character.x, character.y, collideBlocks[i].x, collideBlocks[i].y);
-            if (character.x < collideBlocks[i].x + collideBlocks[i].w &&
-                character.x + character.w > collideBlocks[i].x &&
-                character.y < collideBlocks[i].y + collideBlocks[i].h 
-                &&
-                character.y + character.h > collideBlocks[i].y) {
-                    
-                    character.y = collideBlocks[i].y - character.h;
-                    character.vy = 0;                     
-             } 
-        }
     }
   }
