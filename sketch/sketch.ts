@@ -106,7 +106,7 @@ function keyPressed() {
             stoneNbr++
         }
     }
-    if(keyCode == 52) {
+    if(keyCode == 82) {
       assetNumber = 4; //Resets level      
     }
 } 
