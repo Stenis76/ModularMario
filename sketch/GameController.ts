@@ -116,8 +116,12 @@ class GameController {
         if (this.inBuildPhase) {
             let builder = new Builder(this.inBuildPhase);      
             builder.inBuildMode(assetNumber, this.ladders, this.logs, this.stones);
+            if (assetNumber === 4) {
+              builder.resetLevel();
+            }
         }
     }
 
+    
+
 }
-  

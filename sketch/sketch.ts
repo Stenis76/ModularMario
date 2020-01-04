@@ -1,4 +1,5 @@
 let gameController: any;
+let drawedAssets: Array<LevelObject> = []; 
 let player: any;
 let spawnPoint: object;
 let blockImage: p5.Image;
@@ -11,7 +12,6 @@ let ladderNbr: number = -1;
 let logNbr: number = -1;
 let stoneNbr: number = -1;
 let gameFont: p5.Font;
-
 
 /**
  * Built in preload function in P5
@@ -105,6 +105,9 @@ function keyPressed() {
         if(stoneNbr < stoneLength - 1) {
             stoneNbr++
         }
+    }
+    if(keyCode == 52) {
+      assetNumber = 4; //Resets level      
     }
 } 
 
