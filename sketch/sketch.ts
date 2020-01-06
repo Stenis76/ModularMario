@@ -1,8 +1,6 @@
 let currentScreen: number = 0;
 let splashScreen: any; 
-
 let currentLevel: number = 0;
-
 let gameController: any;
 let drawedAssets: Array<LevelObject> = []; 
 let player: any;
@@ -23,7 +21,6 @@ let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
 let buildMusic: p5.SoundFile;
 let gameFont: p5.Font;
-
 
 /**
  * Built in preload function in P5
@@ -139,6 +136,9 @@ function keyPressed() {
   }
 } 
 
+/**
+ * Handle mouse input
+ */
 function mousePressed() {
   if (currentScreen == 0) {
     mySong.setVolume(0.6);
@@ -146,13 +146,23 @@ function mousePressed() {
     currentScreen = 1;
   }
 
+  //Start new level
   if (currentScreen == 1) {
-    if (mouseX > windowWidth / 2 - 350 && mouseX < windowWidth / 2 - 250 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {
+    if (mouseX > windowWidth / 2 - 350 && mouseX < windowWidth / 2 - 250 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {          
       currentLevel = 0;
-      currentScreen = 2;     
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets leve
+    }
+    if (mouseX > windowWidth / 2 - 200 && mouseX < windowWidth / 2 - 100 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {          
+      currentLevel = 1;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets level
     }
   }
 }
+
 
 
 /**

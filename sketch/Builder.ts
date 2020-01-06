@@ -93,6 +93,7 @@ class Builder {
                 drawedAssets[i].h = 30;                
             }
         }
+        gameController.spawnPlayer(); 
         drawedAssets = []; 
         ladderNbr = -1;
         logNbr = -1;
