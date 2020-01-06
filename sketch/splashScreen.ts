@@ -34,7 +34,7 @@ class SplashScreen {
 
 function mousePressed() {
   if (currentScreen == 0) {
-    mySong.setVolume(0.1);
+    mySong.setVolume(0.6);
     mySong.play();
     currentScreen = 1;
   }

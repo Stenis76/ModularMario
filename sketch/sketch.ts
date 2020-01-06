@@ -14,6 +14,7 @@ let jumpSound: p5.SoundFile;
 let insertSound: p5.SoundFile;
 let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
+let buildMusic: p5.SoundFile;
 
 /**
  * Built in preload function in P5
@@ -31,11 +32,12 @@ function preload() {
   ladderImage = loadImage("./assets/images/ladder.png");
   logImage = loadImage("./assets/images/log.png");
   stoneImage = loadImage("./assets/images/stone.png");
-  mySong = (window as any).loadSound("./assets/sound/intro_game.mp3");
+  mySong = (window as any).loadSound("./assets/sound/smoke.mp3");
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
   insertSound = (window as any).loadSound("./assets/sound/insert.wav");
   deathSound = (window as any).loadSound("./assets/sound/deathsound.mp3");
   winSound = (window as any).loadSound("./assets/sound/winningsound.mp3");
+  buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
 }
 
 /**
@@ -93,6 +95,7 @@ function keyPressed() {
     player.jump();
   }
   if (keyCode == 66) {
+    
     gameController.changeGamePhase();
   }
   if (keyCode == 49) {
