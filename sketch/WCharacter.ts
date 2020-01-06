@@ -31,6 +31,7 @@ class Character {
   public jump() {
     // console.log(this.onGround);
     this.vy = -15;
+    jumpSound.play()
     this.onGround = false;
   }
 

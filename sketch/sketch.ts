@@ -11,7 +11,14 @@ let assetNumber: number;
 let ladderNbr: number = -1;
 let logNbr: number = -1;
 let stoneNbr: number = -1;
+let mySong: p5.SoundFile;
+let jumpSound: p5.SoundFile;
+let insertSound: p5.SoundFile;
+let deathSound: p5.SoundFile;
+let winSound: p5.SoundFile;
+let buildMusic: p5.SoundFile;
 let gameFont: p5.Font;
+
 
 /**
  * Built in preload function in P5
@@ -22,11 +29,20 @@ function preload() {
   // Tyvärr har jag inte fått till den globala typningen för
   // inladdningen av ljud men fungerar bra enligt nedan..
   // sound = (window as any).loadSound('../assets/mySound.wav');
-  blockImage = loadImage('./assets/images/skullblock.png');
-  finishImage = loadImage('./assets/images/cigarette.png');
-  ladderImage = loadImage('./assets/images/ladder.png');
-  logImage = loadImage('./assets/images/log.png');
-  stoneImage = loadImage('./assets/images/stone.png');
+
+  blockImage = loadImage("./assets/images/dirtblock.png");
+  finishImage = loadImage("./assets/images/cigarette.png");
+  blockImage = loadImage("./assets/images/skullblock.png");
+  finishImage = loadImage("./assets/images/cigarette.png");
+  ladderImage = loadImage("./assets/images/ladder.png");
+  logImage = loadImage("./assets/images/log.png");
+  stoneImage = loadImage("./assets/images/stone.png");
+  mySong = (window as any).loadSound("./assets/sound/smoke.mp3");
+  jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
+  insertSound = (window as any).loadSound("./assets/sound/insert.wav");
+  deathSound = (window as any).loadSound("./assets/sound/deathsound.mp3");
+  winSound = (window as any).loadSound("./assets/sound/winningsound.mp3");
+  buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont('assets/VT323.ttf');
 }
 
@@ -40,6 +56,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   fullscreen();
+  debugger;
   gameController = new GameController();
   player = gameController.spawnPlayer();
 }
@@ -51,25 +68,23 @@ function setup() {
  */
 function draw() {
   background(21);
-  if(currentScreen == 0){
+  if (currentScreen == 0) {
     gameController.splashScreen.draw();
   }
 
-  if(currentScreen == 1){
-  background(200);
-  gameController.drawGameArea();
-  gameController.drawLevel();
-  gameController.drawSidebar();
-  gameController.drawAssets();
-    
-  player.show();
-  player.run();
-  player.update();
-    
-  //gameController.collisionDetection(player);
-  gameController.buildPhase(assetNumber); 
+  if (currentScreen == 1) {
+    background(200);
+    gameController.drawGameArea();
+    gameController.drawLevel();
+    gameController.drawSidebar();
+    gameController.drawAssets();
+    player.show();
+    player.run();
+    player.update();
+    gameController.buildPhase(assetNumber, ladderNbr);
+
     if (mouseIsPressed) {
-        assetNumber = 0;
+      assetNumber = 0;
     }
   }
 }
@@ -78,38 +93,39 @@ function draw() {
  * Handle keyboard input
  */
 function keyPressed() {
-    let ladderLength: number = gameController.ladders.length;    
-    let logLength: number = gameController.logs.length;    
-    let stoneLength: number = gameController.stones.length;    
+  let ladderLength: number = gameController.ladders.length;
+  let logLength: number = gameController.logs.length;
+  let stoneLength: number = gameController.stones.length;
 
-    if(keyCode == 32 && player.onGround) {
-        player.jump();
+  if (keyCode == 32) {
+    player.jump();
+  }
+  if (keyCode == 66) {
+    gameController.changeGamePhase();
+  }
+  if (keyCode == 49) {
+    assetNumber = 1;
+    if (ladderNbr < ladderLength - 1) {
+      ladderNbr++;
     }
-    if(keyCode == 66) {
-        gameController.changeGamePhase();    
+  }
+  if (keyCode == 50) {
+    assetNumber = 2;
+    if (logNbr < logLength - 1) {
+      logNbr++;
     }
-    if(keyCode == 49) {
-        assetNumber = 1;
-        if(ladderNbr < ladderLength - 1) {
-            ladderNbr++
-        }
+  }
+  if (keyCode == 51) {
+    assetNumber = 3;
+    if (stoneNbr < stoneLength - 1) {
+      stoneNbr++;
     }
-    if(keyCode == 50) {
-        assetNumber = 2;
-        if(logNbr < logLength - 1) {
-            logNbr++
-        }
-    }
-    if(keyCode == 51) {
-        assetNumber = 3;
-        if(stoneNbr < stoneLength - 1) {
-            stoneNbr++
-        }
-    }
-    if(keyCode == 82) {
-      assetNumber = 4; //Resets level      
+  }
+  if(keyCode == 82) {
+     assetNumber = 4; //Resets level      
     }
 } 
+
 
 /**
  *  Built in windowResize listener function in P5

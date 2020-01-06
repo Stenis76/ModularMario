@@ -105,8 +105,13 @@ class GameController {
     //Go into buildphase
     public changeGamePhase() {
         if (this.inBuildPhase == false) {
+            mySong.stop()
+            buildMusic.setVolume(0.5);
+            buildMusic.play();
             this.inBuildPhase = true;
         } else {
+            buildMusic.stop()
+            mySong.play()
             this.inBuildPhase = false;
         }
     }
