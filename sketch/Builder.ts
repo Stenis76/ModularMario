@@ -26,7 +26,8 @@ class Builder {
                     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
                         if (assetNumber == 1) {                            
                             image(ladderImage, x, y, w, h * 2);
-                            if (mouseIsPressed) {                               
+                            if (mouseIsPressed) {  
+                                insertSound.play()                             
                                 ladders[ladderNbr].x = x;
                                 ladders[ladderNbr].y = y;                                               
                                 ladders[ladderNbr].w = w;
@@ -36,7 +37,8 @@ class Builder {
                         }                                               
                         if (assetNumber == 2) {                            
                             image(logImage, x, y, w * 2, h);
-                            if (mouseIsPressed) {                               
+                            if (mouseIsPressed) {  
+                                insertSound.play()                              
                                 logs[logNbr].x = x;
                                 logs[logNbr].y = y;                                               
                                 logs[logNbr].w = w * 2;
@@ -46,7 +48,8 @@ class Builder {
                         }                                               
                         if (assetNumber == 3) {                            
                             image(stoneImage, x, y, w, h);
-                            if (mouseIsPressed) {                               
+                            if (mouseIsPressed) { 
+                                insertSound.play()                               
                                 stones[stoneNbr].x = x;
                                 stones[stoneNbr].y = y;                                               
                                 stones[stoneNbr].w = w;
