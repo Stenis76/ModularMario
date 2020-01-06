@@ -4,7 +4,7 @@ class Sidebar implements DrawArea{
   x: number = 0;
   y: number = 0;        
 
-  draw(currentLevel: number, ladders: Array<LevelObject>, logs: Array<LevelObject>, stones: Array<LevelObject>) {
+  draw(ladders: Array<LevelObject>, logs: Array<LevelObject>, stones: Array<LevelObject>) {
     fill(26, 9, 56);    
     rect(this.x, this.y, this.w, this.h);
     fill(220);

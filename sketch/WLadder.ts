@@ -16,4 +16,8 @@ class Ladder extends LevelObject {
     public draw() {        
         image(ladderImage, this.x, this.y, this.w, this.h);       
     }
+
+    public collide() {
+        console.log('ladder collide')
+    }
 }

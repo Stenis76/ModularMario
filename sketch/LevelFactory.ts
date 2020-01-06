@@ -57,7 +57,7 @@ class LevelFactory {
     }
   ];
 
-  public getLevel(currentLevel: number): any {
+  public getLevel(): any {
     let cellUnit = this.GA.w / this.levels[currentLevel].layout.length;
     let x = this.GA.x;
     let y = this.GA.y;
@@ -75,7 +75,7 @@ class LevelFactory {
           //   break;
           // }
           case 1:
-            let block = new Block(x, y, w, h, false);
+            let block = new Block(x, y, w, h);
             levelObjects.push(block);
             break;
           case 2:
