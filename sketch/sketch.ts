@@ -1,5 +1,7 @@
 let gameController: any;
+let drawedAssets: Array<LevelObject> = []; 
 let player: any;
+let spawnPoint: object;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
 let ladderImage: p5.Image;
@@ -15,6 +17,8 @@ let insertSound: p5.SoundFile;
 let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
 let buildMusic: p5.SoundFile;
+let gameFont: p5.Font;
+
 
 /**
  * Built in preload function in P5
@@ -25,6 +29,7 @@ function preload() {
   // Tyvärr har jag inte fått till den globala typningen för
   // inladdningen av ljud men fungerar bra enligt nedan..
   // sound = (window as any).loadSound('../assets/mySound.wav');
+
   blockImage = loadImage("./assets/images/dirtblock.png");
   finishImage = loadImage("./assets/images/cigarette.png");
   blockImage = loadImage("./assets/images/skullblock.png");
@@ -38,6 +43,7 @@ function preload() {
   deathSound = (window as any).loadSound("./assets/sound/deathsound.mp3");
   winSound = (window as any).loadSound("./assets/sound/winningsound.mp3");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
+  gameFont = loadFont('assets/VT323.ttf');
 }
 
 /**
@@ -52,7 +58,7 @@ function setup() {
   fullscreen();
   debugger;
   gameController = new GameController();
-  player = gameController.drawLevel();
+  player = gameController.spawnPlayer();
 }
 
 /**
@@ -75,8 +81,8 @@ function draw() {
     player.show();
     player.run();
     player.update();
-    gameController.collisionDetection(player);
     gameController.buildPhase(assetNumber, ladderNbr);
+
     if (mouseIsPressed) {
       assetNumber = 0;
     }
@@ -115,6 +121,10 @@ function keyPressed() {
       stoneNbr++;
     }
   }
+  if(keyCode == 82) {
+     assetNumber = 4; //Resets level      
+    }
+} 
 }
 
 /**

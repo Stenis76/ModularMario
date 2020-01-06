@@ -4,11 +4,7 @@ class LevelFactory {
   private levels: Array<{
     assets: Array<Number>;
     layout: Array<Array<Number>>;
-  }> = [
-    // {
-    //   assets: //Array från builder med assets som skall målas till vänster,
-    //   layout: //Array från builder med aktuell level och assets som har målats ut
-    // },
+  }> = [ 
     {
       assets: [1, 1, 2, 3, 3, 3, 3],
       layout: [
@@ -49,14 +45,14 @@ class LevelFactory {
         [1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0],
         [2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 3, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
       ]
     }
   ];
@@ -73,6 +69,11 @@ class LevelFactory {
     for (let i = 0; i < this.levels[currentLevel].layout.length; i++) {
       for (let j = 0; j < this.levels[currentLevel].layout[i].length; j++) {
         switch (this.levels[currentLevel].layout[i][j]) {
+          // case 0: {
+          //   let emptySpace = new EmptySpace(x, y, w, h);
+          //   levelObjects.push(emptySpace);
+          //   break;
+          // }
           case 1:
             let block = new Block(x, y, w, h, false);
             levelObjects.push(block);
@@ -85,15 +86,11 @@ class LevelFactory {
             let finishBlock = new FinishBlock(x, y, w, h);
             levelObjects.push(finishBlock);
             break;
-          case 4:
-            let character = new Character(x, y, w, h);
-            levelObjects.push(character);
-            break;
         }
-        x += w;
+        x += cellUnit;
       }
       x = this.GA.x;
-      y += h;
+      y += cellUnit;
     }
 
     for(let i = 0; i < this.levels[currentLevel].assets.length; i++) {

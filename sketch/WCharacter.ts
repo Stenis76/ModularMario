@@ -1,23 +1,38 @@
-class Character extends LevelObject {
+class Character {
   private GA = new GameArea();
+
+  public x: number;
+  public y: number;
+  public w: number;
+  public h: number;
   public vy: number;
   public vx: number;
+  public move: number;
+  public cellUnit: number;
+  public onGround: boolean;
+
   private gravity: number;
   private friction: number;
-  public move: number;
 
-  public constructor(x: number, y: number, w: number, h: number) {
-    super(x, y, w, h);
+  public constructor(x: number, y: number, cellUnit: number) {
+    this.cellUnit = cellUnit;
+    this.x = x;
+    this.y = y;
+    this.w = cellUnit * 0.7;
+    this.h = cellUnit * 0.9;
     this.vy = 0;
     this.vx = 0;
-    this.gravity = 1;
-    this.friction = 0.8;
+    this.gravity = cellUnit / 50;
+    this.friction = cellUnit / 60;
     this.move = 0;
+    this.onGround = false;
   }
 
   public jump() {
+    // console.log(this.onGround);
     this.vy = -15;
     jumpSound.play()
+    this.onGround = false;
   }
 
   public update() {
@@ -25,22 +40,25 @@ class Character extends LevelObject {
     this.x += this.vx;
     this.vy += this.gravity;
     this.vx = this.vx * this.friction;
+
     this.y = constrain(this.y, 0, this.GA.h - this.h);
+
+    // console.log(this.onGround);
   }
 
   public run() {
     if (keyIsDown(65)) {
       // move backwards
-      this.move = -1.5;
+      this.move = -this.cellUnit * 0.05;
       if (abs(this.vx) < 6) {
-        this.vx += 1 * this.move;
+        this.vx += this.move;
       }
     }
     if (keyIsDown(68)) {
       // move forward
-      this.move = 1.5;
+      this.move = this.cellUnit * 0.05;
       if (abs(this.vx) < 6) {
-        this.vx += 1 * this.move;
+        this.vx += this.move;
       }
     }
 
