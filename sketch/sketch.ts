@@ -125,7 +125,7 @@ function keyPressed() {
      assetNumber = 4; //Resets level      
     }
 } 
-}
+
 
 /**
  *  Built in windowResize listener function in P5
