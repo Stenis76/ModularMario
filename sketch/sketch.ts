@@ -95,7 +95,6 @@ function keyPressed() {
     player.jump();
   }
   if (keyCode == 66) {
-    
     gameController.changeGamePhase();
   }
   if (keyCode == 49) {
