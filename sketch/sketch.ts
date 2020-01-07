@@ -1,8 +1,8 @@
 let currentScreen: number = 0;
-let splashScreen: any; 
+let splashScreen: any;
 let currentLevel: number = 0;
 let gameController: any;
-let drawedAssets: Array<LevelObject> = []; 
+let drawedAssets: Array<LevelObject> = [];
 let player: any;
 let spawnPoint: object;
 let blockImage: p5.Image;
@@ -45,7 +45,7 @@ function preload() {
   deathSound = (window as any).loadSound("./assets/sound/deathsound.mp3");
   winSound = (window as any).loadSound("./assets/sound/winningsound.mp3");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
-  gameFont = loadFont('assets/VT323.ttf');
+  gameFont = loadFont("assets/VT323.ttf");
 }
 
 /**
@@ -69,7 +69,7 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  background(21)
+  background(21);
 
   //StartScreen
   if (currentScreen == 0) {
@@ -77,7 +77,7 @@ function draw() {
   }
 
   //LevelSelect
-  if (currentScreen == 1 ) {
+  if (currentScreen == 1) {
     gameController.levelSelect();
   }
 
@@ -107,7 +107,7 @@ function keyPressed() {
   let logLength: number = gameController.logs.length;
   let stoneLength: number = gameController.stones.length;
 
-  if (keyCode == 32) {
+  if (keyCode == 32 && player.onGround === true) {
     player.jump();
   }
   if (keyCode == 66) {
@@ -131,10 +131,10 @@ function keyPressed() {
       stoneNbr++;
     }
   }
-  if(keyCode == 82) {
-     assetNumber = 4; //Resets level      
+  if (keyCode == 82) {
+    assetNumber = 4; //Resets level
   }
-} 
+}
 
 /**
  * Handle mouse input
@@ -148,13 +148,23 @@ function mousePressed() {
 
   //Start new level
   if (currentScreen == 1) {
-    if (mouseX > windowWidth / 2 - 350 && mouseX < windowWidth / 2 - 250 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {          
+    if (
+      mouseX > windowWidth / 2 - 350 &&
+      mouseX < windowWidth / 2 - 250 &&
+      mouseY > windowHeight / 2 &&
+      mouseY < windowHeight / 2 + 100
+    ) {
       currentLevel = 0;
       gameController = new GameController();
       currentScreen = 2;
       assetNumber = 4; //Resets leve
     }
-    if (mouseX > windowWidth / 2 - 200 && mouseX < windowWidth / 2 - 100 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {          
+    if (
+      mouseX > windowWidth / 2 - 200 &&
+      mouseX < windowWidth / 2 - 100 &&
+      mouseY > windowHeight / 2 &&
+      mouseY < windowHeight / 2 + 100
+    ) {
       currentLevel = 1;
       gameController = new GameController();
       currentScreen = 2;
@@ -162,8 +172,6 @@ function mousePressed() {
     }
   }
 }
-
-
 
 /**
  *  Built in windowResize listener function in P5

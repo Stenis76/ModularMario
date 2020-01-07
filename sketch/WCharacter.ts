@@ -29,23 +29,24 @@ class Character {
   }
 
   public jump() {
-    // console.log(this.onGround);
     this.vy = -15;
     jumpSound.play()
     this.onGround = false;
   }
-
+  
   public update() {
     this.y += this.vy;
     this.x += this.vx;
     this.vy += this.gravity;
     this.vx = this.vx * this.friction;
-
+    
     this.y = constrain(this.y, 0, this.GA.h - this.h);
-
-    // console.log(this.onGround);
+    
+    if (this.vy > 2 * this.gravity) { // falling
+      this.onGround = false;
+    }
   }
-
+  
   public run() {
     if (keyIsDown(65)) {
       // move backwards
