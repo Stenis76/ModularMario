@@ -143,6 +143,9 @@ function keyPressed() {
   if (keyCode == 82) {
     assetNumber = 4; //Resets level
   }
+  if (keyCode == 76) { //"L"
+    currentScreen = 1; //Resets level
+  }
 }
 
 /**

@@ -13,9 +13,9 @@ class GameController {
   private level: Level = this.levelFactory.getLevel(currentLevel);
 
   private latestScore1: number = 0;
-  private highScore1 = JSON.parse(localStorage.getItem('level1'));
+  private highScore1: number = JSON.parse(localStorage.getItem('level1') || '{}');
   private latestScore2: number = 0;
-  private highScore2 = JSON.parse(localStorage.getItem('level2'));
+  private highScore2: number = JSON.parse(localStorage.getItem('level2') || '{}');
 
   public laddersLeft: Array<LevelObject> = [];
   public logsLeft: Array<LevelObject> = [];
@@ -112,7 +112,7 @@ class GameController {
     }
 
     public win() {
-      clearInterval(this.timer);
+      clearInterval(this.timer);      
       this.timer = 0;
       let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
       score.getScore(); 
@@ -164,15 +164,26 @@ class GameController {
       rect(windowWidth / 2 + 250, windowHeight / 2, 100, 100);
       fill('red');
       textSize(20);
+      textFont(gameFont);
       text('Level 1', windowWidth / 2 - 300, windowHeight / 2 - 5);
-      text(`Highscore: ${this.highScore1}`, windowWidth / 2 - 300, windowHeight / 2 + 120);
+      text('Level 2', windowWidth / 2 - 150, windowHeight / 2 - 5);      
+
+      if (isNaN(this.highScore1)){
+        text(`Highscore: 0`, windowWidth / 2 - 300, windowHeight / 2 + 120);
+      } else {
+        text(`Highscore: ${this.highScore1}`, windowWidth / 2 - 300, windowHeight / 2 + 120);
+      }
+      if (isNaN(this.highScore2)){
+        text(`Highscore: 0`, windowWidth / 2 - 150, windowHeight / 2 + 120);
+      } else {
+        text(`Highscore: ${this.highScore2}`, windowWidth / 2 - 150, windowHeight / 2 + 120);
+      }
+
       text(`Latest score: ${this.latestScore1}`, windowWidth / 2 - 300, windowHeight / 2 + 140);
-      text('Level 2', windowWidth / 2 - 150, windowHeight / 2 - 5);
-      text(`Highscore: ${this.highScore2}`, windowWidth / 2 - 150, windowHeight / 2 + 120);
       text(`Latest score: ${this.latestScore2}`, windowWidth / 2 - 150, windowHeight / 2 + 140);
-      text('Level 3', windowWidth / 2, windowHeight / 2- 5);
-      text('Level 4', windowWidth / 2 + 150, windowHeight / 2- 5);
-      text('Level 5', windowWidth / 2 + 300, windowHeight / 2- 5); 
+      text('Comming soon', windowWidth / 2, windowHeight / 2- 5);
+      text('Comming soon', windowWidth / 2 + 150, windowHeight / 2- 5);
+      text('Comming soon', windowWidth / 2 + 300, windowHeight / 2- 5); 
       noStroke();      
     }
 
