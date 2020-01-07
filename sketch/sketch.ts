@@ -13,6 +13,7 @@ let logImage: p5.Image;
 let goldImage: p5.Image;
 let silverImage: p5.Image;
 let bronzeImage: p5.Image;
+let backgroundImage: p5.Image;
 let assetNumber: number;
 let ladderNbr: number = -1;
 let logNbr: number = -1;
@@ -45,6 +46,7 @@ function preload() {
   goldImage = loadImage("./assets/images/gold.png");
   silverImage = loadImage("./assets/images/silver.png");
   bronzeImage = loadImage("./assets/images/bronze.png");
+  backgroundImage = loadImage("./assets/images/backgroundd.png");
   mySong = (window as any).loadSound("./assets/sound/smoke.mp3");
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
   insertSound = (window as any).loadSound("./assets/sound/insert.wav");
