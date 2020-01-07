@@ -15,7 +15,7 @@ class GameController {
   public laddersLeft: Array<LevelObject> = [];
   public logsLeft: Array<LevelObject> = [];
   public stonesLeft: Array<LevelObject> = [];
-  private spawnPoint: {
+  public spawnPoint: {
     posX: number;
     posY: number;
     cellUnit: number;
@@ -66,6 +66,9 @@ class GameController {
         this.level.levelObjects[i].collide();
       }
       if (this.level.levelObjects[i].constructor === FinishBlock && player) {
+        this.level.levelObjects[i].collide();
+      }
+      if (this.level.levelObjects[i].constructor === KillBlock && player) {
         this.level.levelObjects[i].collide();
       }
     }
