@@ -44,12 +44,14 @@ class Block extends LevelObject {
       char.right > block.left
     ) {
       //collision is true, check what sort of collision
-      player.onGround = true;
-      
 
-      if (char.bottom > block.top && char.top < block.top) {
-        // console.log("Standing on block");
+      if (char.bottom > block.top && char.top < block.top && player.vy > 0) {
         player.y = block.top - char.height;
+        player.vy = 0;
+        player.onGround = true;
+      }
+      if (char.top < block.bottom && char.bottom > block.bottom && player.vy < 0) {
+        player.y = block.bottom;
         player.vy = 0;
       }
     }
