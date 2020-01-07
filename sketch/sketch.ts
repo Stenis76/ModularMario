@@ -1,4 +1,5 @@
 let currentScreen: number = 0;
+let phase: boolean = false;
 let splashScreen: any;
 let currentLevel: number = 0;
 let gameController: any;
@@ -97,9 +98,11 @@ function draw() {
     gameController.drawSidebar();
     gameController.drawAssets();
     player.show();
-    player.run();
-    player.update();
-    gameController.buildPhase(assetNumber, ladderNbr);
+    if (phase) {
+      player.run();
+      player.update();
+    }
+    gameController.buildPhase(assetNumber);
 
     if (mouseIsPressed) {
       assetNumber = 0;
@@ -118,7 +121,7 @@ function keyPressed() {
   let logLength: number = gameController.logs.length;
   let stoneLength: number = gameController.stones.length;
 
-  if (keyCode == 32 && player.onGround === true) {
+  if (keyCode == 32 && player.onGround === true && phase === true) {
     player.jump();
   }
   if (keyCode == 66) {

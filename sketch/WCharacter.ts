@@ -74,6 +74,10 @@ class Character {
     }
   }
 
+  public abletoMovePlayer() {
+    
+  }
+
   public show() {
     fill(22, 255, 255);
     rect(this.x, this.y, this.w, this.h);
