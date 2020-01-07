@@ -34,7 +34,7 @@ class FinishBlock extends LevelObject {
       char.right > block.left
     ) {
       //collision is true, check what sort of collision
-      currentScreen = 1;
+      currentScreen = 3;
       player.x = 200;
       player.y = 200; //Fulsätt att få bort spelaren från cigaretten     
     }
