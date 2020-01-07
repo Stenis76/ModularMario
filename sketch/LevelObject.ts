@@ -16,4 +16,8 @@ class LevelObject {
         stroke(0, 0, 0, 0);
         rect(this.x, this.y, this.w, this.h)
     }
+
+    public collide() {
+        console.log('no block detected')
+    }
 }

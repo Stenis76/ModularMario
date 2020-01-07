@@ -34,8 +34,9 @@ class FinishBlock extends LevelObject {
       char.right > block.left
     ) {
       //collision is true, check what sort of collision
-      console.log('You win!');
-      
+      currentScreen = 1;
+      player.x = 200;
+      player.y = 200; //Fulsätt att få bort spelaren från cigaretten     
     }
   }
 }

@@ -1,3 +1,6 @@
+let currentScreen: number = 0;
+let splashScreen: any; 
+let currentLevel: number = 0;
 let gameController: any;
 let drawedAssets: Array<LevelObject> = []; 
 let player: any;
@@ -18,7 +21,6 @@ let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
 let buildMusic: p5.SoundFile;
 let gameFont: p5.Font;
-
 
 /**
  * Built in preload function in P5
@@ -56,7 +58,7 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   frameRate(60);
   fullscreen();
-  debugger;
+  splashScreen = new SplashScreen(windowWidth, windowHeight, 0, 0);
   gameController = new GameController();
   player = gameController.spawnPlayer();
 }
@@ -67,12 +69,20 @@ function setup() {
  * you created in the setup function above
  */
 function draw() {
-  background(21);
+  background(21)
+
+  //StartScreen
   if (currentScreen == 0) {
-    gameController.splashScreen.draw();
+    splashScreen.draw();
   }
 
-  if (currentScreen == 1) {
+  //LevelSelect
+  if (currentScreen == 1 ) {
+    gameController.levelSelect();
+  }
+
+  //Playable game
+  if (currentScreen == 2) {
     background(200);
     gameController.drawGameArea();
     gameController.drawLevel();
@@ -123,8 +133,36 @@ function keyPressed() {
   }
   if(keyCode == 82) {
      assetNumber = 4; //Resets level      
-    }
+  }
 } 
+
+/**
+ * Handle mouse input
+ */
+function mousePressed() {
+  if (currentScreen == 0) {
+    mySong.setVolume(0.6);
+    mySong.play();
+    currentScreen = 1;
+  }
+
+  //Start new level
+  if (currentScreen == 1) {
+    if (mouseX > windowWidth / 2 - 350 && mouseX < windowWidth / 2 - 250 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {          
+      currentLevel = 0;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets leve
+    }
+    if (mouseX > windowWidth / 2 - 200 && mouseX < windowWidth / 2 - 100 && mouseY > windowHeight / 2 && mouseY < windowHeight / 2 + 100) {          
+      currentLevel = 1;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets level
+    }
+  }
+}
+
 
 
 /**

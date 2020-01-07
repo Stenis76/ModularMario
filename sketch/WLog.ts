@@ -16,4 +16,8 @@ class Log extends LevelObject {
     public draw() {
         image(logImage, this.x, this.y, this.w, this.h);  
     }
+
+    public collide() {
+        console.log('log Collide')
+    }
 }

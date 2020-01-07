@@ -1,15 +1,13 @@
 class Block extends LevelObject {
-  protected deadly: boolean;
 
   public constructor(
     x: number,
     y: number,
     w: number,
     h: number,
-    deadly: boolean
-  ) {
-    super(x, y, w, h);
-    this.deadly = deadly;
+  ) 
+  {
+    super(x, y, w, h); 
   }
 
   public draw() {
@@ -54,7 +52,7 @@ class Block extends LevelObject {
         player.y = block.top - char.height;
         player.vy = 0;
       }
-      }
+    }
 
   }
 }

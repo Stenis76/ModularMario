@@ -16,4 +16,8 @@ class Stone extends LevelObject {
     public draw() {
         image(stoneImage, this.x, this.y, this.w, this.h);  
     }
+
+    public collide() {
+        console.log('stone Collide')
+    }
 }

@@ -31,7 +31,7 @@ class Builder {
                     if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
                         if (assetNumber == 1) {                            
                             image(ladderImage, x, y, w, h * 2);
-                            if (mouseIsPressed) {  
+                            if (mouseIsPressed) { 
                                 insertSound.play()                             
                                 ladders[ladderNbr].x = x;
                                 ladders[ladderNbr].y = y;                                               
@@ -93,6 +93,7 @@ class Builder {
                 drawedAssets[i].h = 30;                
             }
         }
+        gameController.spawnPlayer(); 
         drawedAssets = []; 
         ladderNbr = -1;
         logNbr = -1;

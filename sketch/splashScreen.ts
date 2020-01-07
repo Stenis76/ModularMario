@@ -1,5 +1,3 @@
-let currentScreen: number = 0;
-
 class SplashScreen {
   w: number;
   h: number;
@@ -30,10 +28,4 @@ class SplashScreen {
   }
 }
 
-function mousePressed() {
-  if (currentScreen == 0) {
-    mySong.setVolume(0.6);
-    mySong.play();
-    currentScreen = 1;
-  }
-}
+
