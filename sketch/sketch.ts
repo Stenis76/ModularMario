@@ -10,6 +10,9 @@ let finishImage: p5.Image;
 let ladderImage: p5.Image;
 let stoneImage: p5.Image;
 let logImage: p5.Image;
+let goldImage: p5.Image;
+let silverImage: p5.Image;
+let bronzeImage: p5.Image;
 let assetNumber: number;
 let ladderNbr: number = -1;
 let logNbr: number = -1;
@@ -39,6 +42,9 @@ function preload() {
   ladderImage = loadImage("./assets/images/ladder.png");
   logImage = loadImage("./assets/images/log.png");
   stoneImage = loadImage("./assets/images/stone.png");
+  goldImage = loadImage("./assets/images/gold.png");
+  silverImage = loadImage("./assets/images/silver.png");
+  bronzeImage = loadImage("./assets/images/bronze.png");
   mySong = (window as any).loadSound("./assets/sound/smoke.mp3");
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
   insertSound = (window as any).loadSound("./assets/sound/insert.wav");
@@ -97,6 +103,9 @@ function draw() {
       assetNumber = 0;
     }
   }
+  if (currentScreen == 3) {
+    gameController.win();
+  }
 }
 
 /**
@@ -141,6 +150,11 @@ function keyPressed() {
  */
 function mousePressed() {
   if (currentScreen == 0) {
+    mySong.setVolume(0.6);
+    mySong.play();
+    currentScreen = 1;
+  }
+  if (currentScreen == 3) {
     mySong.setVolume(0.6);
     mySong.play();
     currentScreen = 1;

@@ -120,10 +120,18 @@ class GameController {
 
     //Draw the Sidebar
     public drawSidebar() {  
-        this.sidebar.draw(this.laddersLeft, this.logsLeft, this.stonesLeft);
+        this.sidebar.draw(this.laddersLeft, this.logsLeft, this.stonesLeft); 
         let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
-        score.getScore();
-        console.log(this.time)    
+        score.getScore();          
+    }
+
+    public win() {
+      clearInterval(this.timer);
+      this.timer = 0;
+      let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
+      score.getScore(); 
+      let scorescreen = new Scorescreen(score.getScore());
+      scorescreen.draw();
     }
 
     //Go into buildphase
