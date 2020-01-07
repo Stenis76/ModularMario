@@ -49,7 +49,7 @@ function preload() {
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
   insertSound = (window as any).loadSound("./assets/sound/insert.wav");
   deathSound = (window as any).loadSound("./assets/sound/deathsound.mp3");
-  winSound = (window as any).loadSound("./assets/sound/winningsound.mp3");
+  winSound = (window as any).loadSound("./assets/sound/win.wav");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont("assets/VT323.ttf");
 }

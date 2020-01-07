@@ -130,6 +130,8 @@ class GameController {
 
     public win() {
       clearInterval(this.timer);
+      mySong.stop()
+      winSound.play()
       this.timer = 0;
       let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
       score.getScore(); 
