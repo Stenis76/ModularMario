@@ -197,6 +197,32 @@ function mousePressed() {
       currentScreen = 2;
       assetNumber = 4; //Resets level
     }
+    if (
+      mouseX > windowWidth / 2 - 50 &&
+      mouseX < windowWidth / 2 + 50 &&
+      mouseY > windowHeight / 2 &&
+      mouseY < windowHeight / 2 + 100
+    ) {
+      mySong.stop()
+      buildMusic.play()
+      currentLevel = 2;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets level
+    }
+    if (
+      mouseX > windowWidth / 2 + 100 &&
+      mouseX < windowWidth / 2 + 200 &&
+      mouseY > windowHeight / 2 &&
+      mouseY < windowHeight / 2 + 100
+    ) {
+      mySong.stop()
+      buildMusic.play()
+      currentLevel = 3;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets level
+    }
   }
 
   if (currentScreen == 0) {

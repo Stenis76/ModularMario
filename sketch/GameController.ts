@@ -13,10 +13,14 @@ class GameController {
   private levelFactory = new LevelFactory();
   private level: Level = this.levelFactory.getLevel(currentLevel);
 
-  private latestScore1: number = JSON.parse(localStorage.getItem('level1ls') || '0');;
+  private latestScore1: number = JSON.parse(localStorage.getItem('level1ls') || '0');
   private highScore1: number = JSON.parse(localStorage.getItem('level1hs') || '0');
-  private latestScore2: number = JSON.parse(localStorage.getItem('level2ls') || '0');;
+  private latestScore2: number = JSON.parse(localStorage.getItem('level2ls') || '0');
   private highScore2: number = JSON.parse(localStorage.getItem('level2hs') || '0');
+  private latestScore3: number = JSON.parse(localStorage.getItem('level3ls') || '0');
+  private highScore3: number = JSON.parse(localStorage.getItem('level3hs') || '0');
+  private latestScore4: number = JSON.parse(localStorage.getItem('level4ls') || '0');
+  private highScore4: number = JSON.parse(localStorage.getItem('level4hs') || '0');
 
   public laddersLeft: Array<LevelObject> = [];
   public logsLeft: Array<LevelObject> = [];
@@ -143,14 +147,29 @@ class GameController {
       }
       if (currentLevel == 1) {
         this.latestScore2 = score.getScore();
-        localStorage.setItem("level2ls",JSON.stringify(this.latestScore1));
-      if (this.latestScore2 > this.highScore2 || this.highScore1 == 0) {
+        localStorage.setItem("level2ls",JSON.stringify(this.latestScore2));
+      if (this.latestScore2 > this.highScore2 || this.highScore2 == 0) {
         this.highScore2 = this.latestScore2;
         localStorage.setItem("level2hs",JSON.stringify(this.highScore2));
        }
       } 
+      if (currentLevel == 2) {
+        this.latestScore3 = score.getScore();
+        localStorage.setItem("level3ls",JSON.stringify(this.latestScore3));
+      if (this.latestScore3 > this.highScore3 || this.highScore3 == 0) {
+        this.highScore3 = this.latestScore3;
+        localStorage.setItem("level3hs",JSON.stringify(this.highScore3));
+       }
+      } 
+      if (currentLevel == 3) {
+        this.latestScore4 = score.getScore();
+        localStorage.setItem("level4ls",JSON.stringify(this.latestScore4));
+      if (this.latestScore4 > this.highScore4 || this.highScore4 == 0) {
+        this.highScore4 = this.latestScore4;
+        localStorage.setItem("level4hs",JSON.stringify(this.highScore4));
+       }
+      } 
       if (mouseIsPressed) {
-        console.log('tryckjty')
         loop()
       }
       
@@ -186,10 +205,12 @@ class GameController {
       rect(windowWidth / 2 + 100, windowHeight / 2, 100, 100);
       rect(windowWidth / 2 + 250, windowHeight / 2, 100, 100);
       fill('red');
-      textSize(24);
+      textSize(20);
       textFont(gameFont);
       text('Level 1', windowWidth / 2 - 300, windowHeight / 2 - 5);
       text('Level 2', windowWidth / 2 - 150, windowHeight / 2 - 5);      
+      text('Level 3', windowWidth / 2, windowHeight / 2- 5);
+      text('Level 4', windowWidth / 2 + 150, windowHeight / 2- 5);
 
       if (isNaN(this.highScore1)){
         text(`Highscore: 0`, windowWidth / 2 - 300, windowHeight / 2 + 120);
@@ -201,11 +222,21 @@ class GameController {
       } else {
         text(`Highscore: ${this.highScore2}`, windowWidth / 2 - 150, windowHeight / 2 + 120);
       }
+      if (isNaN(this.highScore3)){
+        text(`Highscore: 0`, windowWidth / 2, windowHeight / 2 + 120);
+      } else {
+        text(`Highscore: ${this.highScore3}`, windowWidth / 2, windowHeight / 2 + 120);
+      }
+      if (isNaN(this.highScore4)){
+        text(`Highscore: 0`, windowWidth / 2 + 150, windowHeight / 2 + 120);
+      } else {
+        text(`Highscore: ${this.highScore4}`, windowWidth / 2 + 150, windowHeight / 2 + 120);
+      }
 
       text(`Latest score: ${this.latestScore1}`, windowWidth / 2 - 300, windowHeight / 2 + 140);
       text(`Latest score: ${this.latestScore2}`, windowWidth / 2 - 150, windowHeight / 2 + 140);
-      text('Comming soon', windowWidth / 2, windowHeight / 2- 5);
-      text('Comming soon', windowWidth / 2 + 150, windowHeight / 2- 5);
+      text(`Latest score: ${this.latestScore3}`, windowWidth / 2, windowHeight / 2 + 140);
+      text(`Latest score: ${this.latestScore4}`, windowWidth / 2 + 150, windowHeight / 2 + 140);
       text('Comming soon', windowWidth / 2 + 300, windowHeight / 2- 5); 
       noStroke();      
     }

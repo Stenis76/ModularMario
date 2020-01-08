@@ -19,9 +19,9 @@ class Scorescreen {
         textFont(gameFont); 
         text('Your Score:', this.w / 2, this.h / 3);
         text(`${this.score}`, this.w / 2, this.h / 2.5);
-        if (this.score > 900) {
+        if (this.score > 870) {
             image(goldImage, this.w / 2 - 60, this.h / 2, 120, 167);
-        } else if (this.score > 800) {
+        } else if (this.score > 770) {
             image(silverImage, this.w / 2 - 60, this.h / 2, 120, 167);
         } else {
             image(bronzeImage, this.w / 2 - 60, this.h / 2, 120, 167);

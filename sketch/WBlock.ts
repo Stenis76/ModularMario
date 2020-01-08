@@ -64,8 +64,7 @@ class Block extends LevelObject {
         char.left < block.left &&
         char.top < block.bottom &&
         char.bottom > block.top &&
-        player.vx > 0 &&
-        !player.onGround
+        player.vx > 0 
       ) {        
         player.x = block.left - char.width;
       }

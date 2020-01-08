@@ -48,7 +48,7 @@ public collide() {
     player.x = gameController.spawnPoint.posX;
     player.y = gameController.spawnPoint.posY;
     this.deathscreen.draw();
-    setTimeout(function(){loop()}, 5000);    
+    setTimeout(function(){loop()}, 3000);    
   }
 }
 }
