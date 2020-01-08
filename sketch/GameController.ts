@@ -186,7 +186,7 @@ class GameController {
       rect(windowWidth / 2 + 100, windowHeight / 2, 100, 100);
       rect(windowWidth / 2 + 250, windowHeight / 2, 100, 100);
       fill('red');
-      textSize(20);
+      textSize(24);
       textFont(gameFont);
       text('Level 1', windowWidth / 2 - 300, windowHeight / 2 - 5);
       text('Level 2', windowWidth / 2 - 150, windowHeight / 2 - 5);      

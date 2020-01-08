@@ -124,9 +124,9 @@ function keyPressed() {
   let logLength: number = gameController.logs.length;
   let stoneLength: number = gameController.stones.length;
 
-  if (keyCode == 32 && player.onGround === true && phase === true) {
+  if (keyCode == 32 && currentScreen == 2 && player.onGround === true && phase === true) {
     player.jump();
-  }
+  }  
   if (keyCode == 66) {
     gameController.changeGamePhase();
   }

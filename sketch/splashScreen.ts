@@ -15,7 +15,7 @@ class SplashScreen {
     textFont(gameFont)
     textAlign(CENTER)
     let infoText: string =
-      "Ett puzzelspel blandat med plattformsspel. \n Du skall bygga en bana för att hjälpa den stackars Jonathan \n  till sin efterlängtade ciggarett. \n Du kan när du vill pausa och gå in i byggfasen och börja om. \n Akta dig för grönsakerna på botten, \n Jonathan avskyr dem och du vet inte vad som kan hända..";
+     "Build a way to help poor Jonathan get to his beloved cigarette. \n But watch out for the vegetables at the bottom, \n Jonathan hates them and won´t survive a single bite..";
     fill("black");
     rect(this.x, this.y, this.w, this.h);
     fill("white");

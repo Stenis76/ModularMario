@@ -1,5 +1,7 @@
 class KillBlock extends LevelObject {
 
+  private deathscreen = new Deathscreen();
+
   public constructor(
     x: number,
     y: number,
@@ -45,7 +47,8 @@ public collide() {
     noLoop()
     player.x = gameController.spawnPoint.posX;
     player.y = gameController.spawnPoint.posY;
-    setTimeout(function(){ alert("You dont like prompts? Dont die! Press ok to continue"); loop()}, 1000);
+    this.deathscreen.draw();
+    setTimeout(function(){loop()}, 5000);    
   }
 }
 }
