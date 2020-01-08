@@ -146,6 +146,7 @@ class GameController {
           buildMusic.stop()
           mySong.play();
           this.inBuildPhase = false;
+          phase = true;
           this.timer = setInterval(() => { this.time++ }, 1000);
         } else if (this.inBuildPhase === false) {            
           clearInterval(this.timer);
@@ -153,7 +154,8 @@ class GameController {
           mySong.stop();
           buildMusic.setVolume(0.5);
           buildMusic.play();
-          this.inBuildPhase = true;            
+          this.inBuildPhase = true;
+          phase = false;            
       }
     }
 
