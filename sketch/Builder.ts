@@ -37,12 +37,12 @@ class Builder {
               }
             }
             if (assetNumber == 2) {
-              image(logImage, x, y, w * 2, h);
+              image(logImage, x, y, w * 3, h);
               if (mouseIsPressed) {
                 insertSound.play();
                 logs[logNbr].x = x;
                 logs[logNbr].y = y;
-                logs[logNbr].w = w * 2;
+                logs[logNbr].w = w * 3;
                 logs[logNbr].h = h;
                 drawedAssets.push(logs[logNbr]);
               }
