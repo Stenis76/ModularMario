@@ -181,6 +181,7 @@ function mousePressed() {
       gameController = new GameController();
       currentScreen = 2;
       mySong.stop()
+      buildMusic.setVolume(0.6)
       buildMusic.play()
 
       assetNumber = 4; //Resets leve
@@ -192,6 +193,7 @@ function mousePressed() {
       mouseY < windowHeight / 2 + 100
     ) {
       mySong.stop()
+      buildMusic.setVolume(0.6)
       buildMusic.play()
       currentLevel = 1;
       gameController = new GameController();

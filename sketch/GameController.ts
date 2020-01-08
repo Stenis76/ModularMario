@@ -154,6 +154,7 @@ class GameController {
       
         if (this.inBuildPhase === true) { 
           buildMusic.stop()
+          mySong.setVolume(0.5)
           mySong.play();
           this.inBuildPhase = false;
           phase = true;
