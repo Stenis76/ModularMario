@@ -12,7 +12,6 @@ class Sidebar implements DrawArea{
     textFont(gameFont)
     text(`Level: ${currentLevel + 1}`,this.w / 2, this.h * 0.1);
     textSize(18);
-    text('Press "B" to enter Build Mode', this.w / 2, this.y + this.h - 50); 
     
     textSize(22);
     text(`X ${ladders.length}`, this.w / 2, this.h * 0.25);

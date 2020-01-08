@@ -92,10 +92,11 @@ function draw() {
 
   //Playable game
   if (currentScreen == 2) {
-    background(200);
+   // background(200);
     gameController.drawGameArea();
     gameController.drawLevel();
     gameController.drawSidebar();
+    gameController.drawSidebarright();
     gameController.drawAssets();
     player.show();
     if (phase) {
