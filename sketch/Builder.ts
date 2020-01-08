@@ -9,25 +9,20 @@ class Builder {
     this.phase = phase;
   }
 
-  public inBuildMode(
-    assetNumber: number,
-    ladders: Array<LevelObject>,
-    logs: Array<LevelObject>,
-    stones: Array<LevelObject>
-  ) {
-    let cellUnit: number = this.gameArea.w / 20;
-    let x: number = this.gameArea.x;
-    let y: number = this.gameArea.y;
-    let w: number = cellUnit;
-    let h: number = cellUnit;
 
-    textFont(gameFont);
-    textSize(18);
-    text(
-      'Press "R" to reset level',
-      this.sidebar.w / 2,
-      this.sidebar.y + this.sidebar.h - 25
-    );
+  public inBuildMode(assetNumber: number, ladders: Array<LevelObject>, logs: Array<LevelObject>, stones: Array<LevelObject>) {
+        let cellUnit: number = this.gameArea.w / 20;
+        let x: number = this.gameArea.x;
+        let y: number = this.gameArea.y;
+        let w: number = cellUnit;
+        let h: number = cellUnit;
+        
+        textFont(gameFont)    
+        textSize(18); 
+        text('Press "R" to reset level', this.sidebar.w / 2, this.sidebar.y + this.sidebar.h - 25);
+        text('Press "1" to add a ladder', this.sidebar.w / 2, this.sidebar.y + this.sidebar.h * 0.73); 
+        text('Press "2" to add a log', this.sidebar.w / 2, this.sidebar.y + this.sidebar.h * 0.73 + 25); 
+        text('Press "3" to add a stone', this.sidebar.w / 2, this.sidebar.y + this.sidebar.h  * 0.73 + 50);
 
     if (this.phase) {
       for (let i = 0; i < 20; i++) {
