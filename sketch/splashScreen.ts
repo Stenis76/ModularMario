@@ -19,7 +19,8 @@ class SplashScreen {
     fill("white");
     textAlign(CENTER);
     textSize(25);
-    text("CIGGEN", width / 2, height / 3);
+    imageMode(CENTER);
+    image(splashImg,  width / 2, height / 4.3 );
     textSize(14);
     text("click anywhere to start", width / 2, height / 2.5);
     textSize(12);
