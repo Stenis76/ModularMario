@@ -88,19 +88,22 @@ class GameController {
                     this.ladders.push(this.level.levelAssets[i]);
                     if (this.level.levelAssets[i].x < this.sidebar.w){
                         this.laddersLeft.push(this.level.levelAssets[i]);
-                    }                                       
+                    }   
+                    this.level.levelAssets[i].collide();                                    
                     break;
                 case Log:
                     this.logs.push(this.level.levelAssets[i]);
                     if (this.level.levelAssets[i].x < this.sidebar.w){
                         this.logsLeft.push(this.level.levelAssets[i]);
-                    }                       
+                    }        
+                    this.level.levelAssets[i].collide();                
                     break;
                 case Stone:
                     this.stones.push(this.level.levelAssets[i]);
                     if (this.level.levelAssets[i].x < this.sidebar.w){
                         this.stonesLeft.push(this.level.levelAssets[i]);
                     }
+                    this.level.levelAssets[i].collide(); 
                     break;
             }  
             this.level.levelAssets[i].draw();           

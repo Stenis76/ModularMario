@@ -1,18 +1,12 @@
 class Block extends LevelObject {
-
-  public constructor(
-    x: number,
-    y: number,
-    w: number,
-    h: number,
-  ) 
-  {
-    super(x, y, w, h); 
+  public constructor(x: number, y: number, w: number, h: number) {
+    super(x, y, w, h);
   }
 
   public draw() {
     fill("white");
-    image(blockImage, this.x, this.y, this.w, this.h);
+    // image(blockImage, this.x, this.y, this.w, this.h);
+    rect(this.x, this.y, this.w, this.h);
     redraw();
   }
 
@@ -36,7 +30,6 @@ class Block extends LevelObject {
       height: player.h
     };
 
-    
     if (
       char.bottom > block.top &&
       char.top < block.bottom &&
@@ -45,16 +38,49 @@ class Block extends LevelObject {
     ) {
       //collision is true, check what sort of collision
 
-      if (char.bottom > block.top && char.top < block.top && player.vy > 0) {
+      if (
+        // top
+        char.bottom > block.top &&
+        char.top < block.top &&
+        player.vy > 0
+      ) {
         player.y = block.top - char.height;
         player.vy = 0;
         player.onGround = true;
       }
-      if (char.top < block.bottom && char.bottom > block.bottom && player.vy < 0) {
+      if (
+        // bottom
+        char.top < block.bottom &&
+        char.bottom > block.bottom &&
+        player.vy < 0
+      ) {
         player.y = block.bottom;
         player.vy = 0;
       }
-    }
 
+      if (
+        // left
+        char.right > block.left &&
+        char.left < block.left &&
+        char.top < block.bottom &&
+        char.bottom > block.top &&
+        player.vx > 0 &&
+        !player.onGround
+      ) {
+        console.log("col left");
+
+        player.x = block.left - char.width;
+      }
+      if (
+        // right
+        char.left < block.right &&
+        char.right > block.right &&
+        player.vx < 0 &&
+        !player.onGround
+      ) {
+        console.log("col right");
+        player.x = block.right;
+      }
+    }
   }
 }
