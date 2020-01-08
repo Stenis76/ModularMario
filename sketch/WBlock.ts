@@ -4,8 +4,9 @@ class Block extends LevelObject {
   }
 
   public draw() {
-    fill("white");
+    noFill()
     image(blockImage, this.x, this.y, this.w, this.h);
+    rect(this.x, this.y, this.w, this.h);
     redraw();
   }
 
@@ -75,7 +76,7 @@ class Block extends LevelObject {
         !player.onGround
       ) {
         player.onWallRight = true;
-        player.x = block.right;
+
       }
     }
   }

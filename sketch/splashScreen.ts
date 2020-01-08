@@ -12,17 +12,18 @@ class SplashScreen {
   }
 
   draw() {
+    textFont(gameFont)
+    textAlign(CENTER)
     let infoText: string =
-      "Ett puzzelspel blandat med plattformsspel. \n Du skall bygga en bana för att hjälpa den stackars Jonathan \n  till sin efterlängtade ciggarett. \n Du kan när du vill pausa och gå in i byggfasen och börja om. \n Akta dig för grönsakerna på botten, \n Jonathan avskyr dem och du vet inte vad som kan hända..";
+     "Build a way to help poor Jonathan get to his beloved cigarette. \n But watch out for the vegetables at the bottom, \n Jonathan hates them and won´t survive a single bite..";
     fill("black");
     rect(this.x, this.y, this.w, this.h);
     fill("white");
-    textAlign(CENTER);
-    textSize(25);
-    text("CIGGEN", width / 2, height / 3);
-    textSize(14);
+    imageMode(CENTER);
+    image(splashImg,  width / 2, height / 4.3 );
+    textSize(24);
     text("click anywhere to start", width / 2, height / 2.5);
-    textSize(12);
+    textSize(20);
     text(infoText, width / 2, height / 2 + 20);
     // console.log(this.h, this.w);
   }
