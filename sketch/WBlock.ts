@@ -44,7 +44,7 @@ class Block extends LevelObject {
         char.top < block.top &&
         player.vy > 0
       ) {
-        player.y = block.top - char.height;
+        player.y = block.top - char.height ;
         player.vy = 0;
         player.onGround = true;
       }
@@ -62,20 +62,21 @@ class Block extends LevelObject {
         // left
         char.right > block.left &&
         char.left < block.left &&
-        char.top < block.bottom &&
-        char.bottom > block.top &&
-        player.vx > 0 
-      ) {        
+        player.vx > 0 && 
+        !player.onGround
+      ) {
+        player.onWallLeft = true;
         player.x = block.left - char.width;
       }
       if (
         // right
         char.left < block.right &&
         char.right > block.right &&
-        player.vx < 0 &&
+        player.vx < 0 && 
         !player.onGround
-      ) {        
-        player.x = block.right;
+      ) {
+        player.onWallRight = true;
+
       }
     }
   }

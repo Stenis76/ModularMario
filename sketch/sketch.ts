@@ -6,6 +6,8 @@ let gameController: any;
 let drawedAssets: Array<LevelObject> = [];
 let player: any;
 let spawnPoint: object;
+
+let playerSprite: p5.Image;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
 let ladderImage: p5.Image;
@@ -37,7 +39,8 @@ function preload() {
   // Tyvärr har jag inte fått till den globala typningen för
   // inladdningen av ljud men fungerar bra enligt nedan..
   // sound = (window as any).loadSound('../assets/mySound.wav');
-
+  
+  playerSprite = loadImage("./assets/images/animation/run/frame-2.png");
   blockImage = loadImage("./assets/images/dirtblock.png");
   finishImage = loadImage("./assets/images/cigarette.png");
   blockImage = loadImage("./assets/images/skullblock.png");
@@ -56,7 +59,9 @@ function preload() {
   winSound = (window as any).loadSound("./assets/sound/win.wav");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont("assets/VT323.ttf");
+
   splashImg = loadImage("./assets/images/test.png");
+
 }
 
 /**
@@ -126,7 +131,14 @@ function keyPressed() {
 
   if (keyCode == 32 && currentScreen == 2 && player.onGround === true && phase === true) {
     player.jump();
-  }  
+  }
+  // if (keyCode == 32 && player.onWallLeft === true && phase === true) {
+  //   player.wallJumpLeft();
+  // }
+  // if (keyCode == 32 && player.onWallRight === true && phase === true) {
+  //   player.wallJumpRight();
+  // }
+  
   if (keyCode == 66) {
     gameController.changeGamePhase();
   }
