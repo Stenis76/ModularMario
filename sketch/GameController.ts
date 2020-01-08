@@ -1,6 +1,7 @@
 class GameController {
 
   private sidebar = new Sidebar();
+  private sidebarright = new Sidebarright();
   private gameArea = new GameArea();
   public inBuildPhase: boolean = true;
   public ladders: Array<LevelObject> = [];
@@ -115,6 +116,9 @@ class GameController {
         this.sidebar.draw(this.laddersLeft, this.logsLeft, this.stonesLeft); 
         let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
         score.getScore();          
+    }
+    public drawSidebarright(){
+      this.sidebarright.draw();
     }
 
     public win() {
