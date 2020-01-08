@@ -26,6 +26,7 @@ let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
 let buildMusic: p5.SoundFile;
 let gameFont: p5.Font;
+let splashImg: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -55,6 +56,7 @@ function preload() {
   winSound = (window as any).loadSound("./assets/sound/win.wav");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont("assets/VT323.ttf");
+  splashImg = loadImage("./assets/images/test.png");
 }
 
 /**
@@ -156,12 +158,7 @@ function keyPressed() {
 /**
  * Handle mouse input
  */
-function mousePressed() {
-  if (currentScreen == 0) {
-    mySong.setVolume(0.6);
-    mySong.play();
-    currentScreen = 1;
-  }
+function mousePressed() {  
   if (currentScreen == 3) {
     currentScreen = 1;
     mySong.setVolume(0.6);
@@ -201,7 +198,12 @@ function mousePressed() {
       assetNumber = 4; //Resets level
     }
   }
-  
+
+  if (currentScreen == 0) {
+    mySong.setVolume(0.6);
+    mySong.play();
+    currentScreen = 1;
+  }
 }
 
 /**
