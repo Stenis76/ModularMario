@@ -1,5 +1,6 @@
 class Character {
   private GA = new GameArea();
+  private sidebar = new Sidebar()
 
   public x: number;
   public y: number;
@@ -29,24 +30,26 @@ class Character {
   }
 
   public jump() {
-    this.vy = -15;
-    jumpSound.play()
+    this.vy = -this.cellUnit / Math.PI;
+    jumpSound.play();
     this.onGround = false;
   }
-  
+
   public update() {
     this.y += this.vy;
     this.x += this.vx;
     this.vy += this.gravity;
     this.vx = this.vx * this.friction;
-    
+
     this.y = constrain(this.y, 0, this.GA.h - this.h);
-    
-    if (this.vy > 2 * this.gravity) { // falling
+    this.x = constrain(this.x, this.sidebar.w, this.GA.w + this.sidebar.w - this.w);
+
+    if (this.vy > 2 * this.gravity) {
+      // falling
       this.onGround = false;
     }
   }
-  
+
   public run() {
     if (keyIsDown(65)) {
       // move backwards
@@ -67,11 +70,16 @@ class Character {
       this.vx = 0;
     }
 
-    if (this.x < this.GA.x) {
-      this.x = this.GA.x;
-    } else if (this.x > this.GA.x + this.GA.w - this.w) {
-      this.x = this.GA.x + this.GA.w - this.w;
-    }
+    // if (this.x < this.GA.x) {
+    //   this.x = this.GA.x;
+    // }
+    // if (this.x > this.GA.x + this.GA.w - this.w) {
+    //   this.x = this.GA.x + this.GA.w - this.w;
+    // }
+  }
+
+  public abletoMovePlayer() {
+    
   }
 
   public show() {

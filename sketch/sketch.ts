@@ -1,4 +1,5 @@
 let currentScreen: number = 0;
+let phase: boolean = false;
 let splashScreen: any;
 let currentLevel: number = 0;
 let gameController: any;
@@ -13,6 +14,7 @@ let logImage: p5.Image;
 let goldImage: p5.Image;
 let silverImage: p5.Image;
 let bronzeImage: p5.Image;
+let backgroundImage: p5.Image;
 let assetNumber: number;
 let ladderNbr: number = -1;
 let logNbr: number = -1;
@@ -45,6 +47,7 @@ function preload() {
   goldImage = loadImage("./assets/images/gold.png");
   silverImage = loadImage("./assets/images/silver.png");
   bronzeImage = loadImage("./assets/images/bronze.png");
+  backgroundImage = loadImage("./assets/images/backgroundd.png");
   mySong = (window as any).loadSound("./assets/sound/smoke.mp3");
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
   insertSound = (window as any).loadSound("./assets/sound/insert.wav");
@@ -95,9 +98,11 @@ function draw() {
     gameController.drawSidebar();
     gameController.drawAssets();
     player.show();
-    player.run();
-    player.update();
-    gameController.buildPhase(assetNumber, ladderNbr);
+    if (phase) {
+      player.run();
+      player.update();
+    }
+    gameController.buildPhase(assetNumber);
 
     if (mouseIsPressed) {
       assetNumber = 0;
@@ -116,7 +121,7 @@ function keyPressed() {
   let logLength: number = gameController.logs.length;
   let stoneLength: number = gameController.stones.length;
 
-  if (keyCode == 32 && player.onGround === true) {
+  if (keyCode == 32 && player.onGround === true && phase === true) {
     player.jump();
   }
   if (keyCode == 66) {
@@ -142,6 +147,9 @@ function keyPressed() {
   }
   if (keyCode == 82) {
     assetNumber = 4; //Resets level
+  }
+  if (keyCode == 76) { //"L"
+    currentScreen = 1; //Resets level
   }
 }
 
