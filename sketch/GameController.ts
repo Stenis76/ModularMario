@@ -197,12 +197,12 @@ class GameController {
 
     public levelSelect() {
       fill('black');
-      rect(windowWidth, windowHeight, 0, 0);
-      stroke('red');
-      rect(windowWidth / 2 - 350, windowHeight / 2, 100, 100);       
-      rect(windowWidth / 2 - 200, windowHeight / 2, 100, 100);
-      rect(windowWidth / 2 - 50, windowHeight / 2, 100, 100);
-      rect(windowWidth / 2 + 100, windowHeight / 2, 100, 100);
+      rect(windowWidth, windowHeight, 0, 0); 
+      imageMode(CORNER)
+      image(level1Image, windowWidth / 2 - 350, windowHeight / 2, 100, 100);       
+      image(level2Image, windowWidth / 2 - 200, windowHeight / 2, 100, 100);
+      image(level3Image, windowWidth / 2 - 50, windowHeight / 2, 100, 100);
+      image(level4Image, windowWidth / 2 + 100, windowHeight / 2, 100, 100);
       rect(windowWidth / 2 + 250, windowHeight / 2, 100, 100);
       fill('red');
       textSize(20);
