@@ -12,6 +12,9 @@ class Sidebar implements DrawArea{
     textFont(gameFont)
     text(`Level: ${currentLevel + 1}`,this.w / 2, this.h * 0.1);
     textSize(18); 
+    text('Press "1" to add a ladder', this.w / 2, this.y + this.h - 110);
+    text('Press "2" to add a logg', this.w / 2, this.y + this.h - 90);
+    text('Press "3" to add a stone', this.w / 2 this.y + this.h - 70)
     text('Press "B" to enter Build Mode', this.w / 2, this.y + this.h - 50); 
     
     textSize(22);
