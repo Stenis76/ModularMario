@@ -153,6 +153,7 @@ function keyPressed() {
   }
   if (keyCode == 76) { //"L"
     currentScreen = 1; //Resets level
+    phase = false;
   }
 }
 

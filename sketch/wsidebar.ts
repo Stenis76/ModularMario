@@ -21,7 +21,6 @@ class Sidebar implements DrawArea{
     image(logImage, this.w / 4, this.h * 0.42, 60, 30);
 
     text(`X ${stones.length}`, this.w / 2, this.h * 0.65);
-    image(stoneImage, this.w / 3, this.h * 0.62, 30, 30);
-     
+    image(stoneImage, this.w / 3, this.h * 0.62, 30, 30);     
   }
 }

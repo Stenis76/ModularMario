@@ -117,6 +117,7 @@ class GameController {
         let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
         score.getScore();          
     }
+
     public drawSidebarright(){
       this.sidebarright.draw();
     }
@@ -128,7 +129,6 @@ class GameController {
       clearInterval(this.timer);
       this.timer = 0;
       let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
-      score.getScore(); 
       let scorescreen = new Scorescreen(score.getScore());
       scorescreen.draw();
       phase = false;

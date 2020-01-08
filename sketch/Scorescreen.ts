@@ -11,6 +11,7 @@ class Scorescreen {
     }
 
     public draw() {
+        clear();
         fill('black');
         rect(this.x, this.y, this.w, this.h);
         fill(100);
@@ -26,6 +27,4 @@ class Scorescreen {
             image(bronzeImage, this.w / 2 - 60, this.h / 2, 120, 167);
         }
     }
-
-
 }
