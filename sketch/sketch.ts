@@ -26,6 +26,7 @@ let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
 let buildMusic: p5.SoundFile;
 let gameFont: p5.Font;
+let splashImg: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -55,6 +56,7 @@ function preload() {
   winSound = (window as any).loadSound("./assets/sound/win.wav");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont("assets/VT323.ttf");
+  splashImg = loadImage("./assets/images/test.png");
 }
 
 /**

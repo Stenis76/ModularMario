@@ -6,6 +6,7 @@ class GameArea implements DrawArea{
   
     draw() {
       fill(100)
+      imageMode(CORNER);
       image(backgroundImage,this.x, this.y, this.w, this.h)
     }
   }
