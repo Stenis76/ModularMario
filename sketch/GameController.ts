@@ -118,7 +118,10 @@ class GameController {
     }
 
     public win() {
-      clearInterval(this.timer);      
+      noLoop()
+      mySong.stop()
+      winSound.play()
+      clearInterval(this.timer);
       this.timer = 0;
       let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
       score.getScore(); 
@@ -127,17 +130,21 @@ class GameController {
       console.log(this.highScore1)
       if (currentLevel == 0) {
         this.latestScore1 = score.getScore();
-      if (this.latestScore1 > this.highScore1 || this.highScore1 == 0) {
-        this.highScore1 = this.latestScore1;
-        localStorage.setItem("level1",JSON.stringify(this.highScore1));
-      }
+        if (this.latestScore1 > this.highScore1 || this.highScore1 == 0) {
+          this.highScore1 = this.latestScore1;
+          localStorage.setItem("level1",JSON.stringify(this.highScore1));
+        }
       }
       if (currentLevel == 1) {
         this.latestScore2 = score.getScore();
-      if (this.latestScore2 > this.highScore2 || this.highScore1 == 0) {
-        this.highScore2 = this.latestScore2;
-        localStorage.setItem("level2",JSON.stringify(this.highScore2));
+        if (this.latestScore2 > this.highScore2 || this.highScore1 == 0) {
+          this.highScore2 = this.latestScore2;
+          localStorage.setItem("level2",JSON.stringify(this.highScore2));
+        }
       }
+      if (mouseIsPressed) {
+        console.log('tryckjty')
+        loop()
       }
       
     }

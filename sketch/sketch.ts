@@ -52,7 +52,7 @@ function preload() {
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");
   insertSound = (window as any).loadSound("./assets/sound/insert.wav");
   deathSound = (window as any).loadSound("./assets/sound/deathsound.mp3");
-  winSound = (window as any).loadSound("./assets/sound/winningsound.mp3");
+  winSound = (window as any).loadSound("./assets/sound/win.wav");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont("assets/VT323.ttf");
 }
@@ -163,9 +163,10 @@ function mousePressed() {
     currentScreen = 1;
   }
   if (currentScreen == 3) {
+    currentScreen = 1;
     mySong.setVolume(0.6);
     mySong.play();
-    currentScreen = 1;
+    loop()
   }
 
   //Start new level
@@ -179,6 +180,9 @@ function mousePressed() {
       currentLevel = 0;
       gameController = new GameController();
       currentScreen = 2;
+      mySong.stop()
+      buildMusic.play()
+
       assetNumber = 4; //Resets leve
     }
     if (
@@ -187,12 +191,15 @@ function mousePressed() {
       mouseY > windowHeight / 2 &&
       mouseY < windowHeight / 2 + 100
     ) {
+      mySong.stop()
+      buildMusic.play()
       currentLevel = 1;
       gameController = new GameController();
       currentScreen = 2;
       assetNumber = 4; //Resets level
     }
   }
+  
 }
 
 /**
