@@ -4,8 +4,8 @@ class Block extends LevelObject {
   }
 
   public draw() {
-    fill("white");
-    // image(blockImage, this.x, this.y, this.w, this.h);
+    noFill()
+    image(blockImage, this.x, this.y, this.w, this.h);
     rect(this.x, this.y, this.w, this.h);
     redraw();
   }
@@ -66,9 +66,7 @@ class Block extends LevelObject {
         char.bottom > block.top &&
         player.vx > 0 &&
         !player.onGround
-      ) {
-        console.log("col left");
-
+      ) {        
         player.x = block.left - char.width;
       }
       if (
@@ -77,8 +75,7 @@ class Block extends LevelObject {
         char.right > block.right &&
         player.vx < 0 &&
         !player.onGround
-      ) {
-        console.log("col right");
+      ) {        
         player.x = block.right;
       }
     }

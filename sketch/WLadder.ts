@@ -18,5 +18,7 @@ class Ladder extends LevelObject {
   }
 
   public collide() {
+    
   }
-}
+  }
+

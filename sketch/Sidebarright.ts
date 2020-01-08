@@ -7,7 +7,7 @@ class Sidebarright implements DrawArea{
     y: number = 0;
     
   
-    draw() { console.log(this.w)
+    draw() { 
       fill(26, 9, 56);    
       rect(this.x, this.y, this.w, this.h);
       fill(129, 177, 248);
@@ -29,7 +29,6 @@ class Sidebarright implements DrawArea{
       text('When in build mode', this.x + this.w / 2, this.h *0.65)
       stroke(129, 177, 248)
       line(-85 + this.x + this.w / 2, this.h *0.655, 85 + this.x + this.w / 2, this.h *0.655)
-
-
+      noStroke();
     }
   }

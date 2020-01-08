@@ -11,7 +11,7 @@ class KillBlock extends LevelObject {
   }
 
 public draw() {
-  fill('white')
+  fill(0, 0, 0, 0);
   rect(this.x, this.y, this.w, this.h);
 }
 public collide() {
