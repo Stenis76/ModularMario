@@ -156,12 +156,7 @@ function keyPressed() {
 /**
  * Handle mouse input
  */
-function mousePressed() {
-  if (currentScreen == 0) {
-    mySong.setVolume(0.6);
-    mySong.play();
-    currentScreen = 1;
-  }
+function mousePressed() {  
   if (currentScreen == 3) {
     mySong.setVolume(0.6);
     mySong.play();
@@ -192,6 +187,11 @@ function mousePressed() {
       currentScreen = 2;
       assetNumber = 4; //Resets level
     }
+  }
+  if (currentScreen == 0) {
+    mySong.setVolume(0.6);
+    mySong.play();
+    currentScreen = 1;
   }
 }
 

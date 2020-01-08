@@ -12,10 +12,10 @@ class GameController {
   private levelFactory = new LevelFactory();
   private level: Level = this.levelFactory.getLevel(currentLevel);
 
-  private latestScore1: number = 0;
-  private highScore1: number = JSON.parse(localStorage.getItem('level1') || '0');
-  private latestScore2: number = 0;
-  private highScore2: number = JSON.parse(localStorage.getItem('level2') || '0');
+  private latestScore1: number = JSON.parse(localStorage.getItem('level1ls') || '0');;
+  private highScore1: number = JSON.parse(localStorage.getItem('level1hs') || '0');
+  private latestScore2: number = JSON.parse(localStorage.getItem('level2ls') || '0');;
+  private highScore2: number = JSON.parse(localStorage.getItem('level2hs') || '0');
 
   public laddersLeft: Array<LevelObject> = [];
   public logsLeft: Array<LevelObject> = [];
@@ -124,19 +124,22 @@ class GameController {
       score.getScore(); 
       let scorescreen = new Scorescreen(score.getScore());
       scorescreen.draw();
-      console.log(this.highScore1)
+      phase = false;
+
       if (currentLevel == 0) {
         this.latestScore1 = score.getScore();
+        localStorage.setItem("level1ls",JSON.stringify(this.latestScore1));
       if (this.latestScore1 > this.highScore1 || this.highScore1 == 0) {
         this.highScore1 = this.latestScore1;
-        localStorage.setItem("level1",JSON.stringify(this.highScore1));
+        localStorage.setItem("level1hs",JSON.stringify(this.highScore1));
       }
       }
       if (currentLevel == 1) {
         this.latestScore2 = score.getScore();
+        localStorage.setItem("level2ls",JSON.stringify(this.latestScore1));
       if (this.latestScore2 > this.highScore2 || this.highScore1 == 0) {
         this.highScore2 = this.latestScore2;
-        localStorage.setItem("level2",JSON.stringify(this.highScore2));
+        localStorage.setItem("level2hs",JSON.stringify(this.highScore2));
       }
       }
       
