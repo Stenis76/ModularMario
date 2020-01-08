@@ -15,8 +15,10 @@ private sidebar = new Sidebar;
 
     public getScore(): number {    
         this.score = Math.round(500 * Math.pow(Math.E, (this.time) / -120) + (100+(this.ladderAmount * 90) + (this.logAmount * 60) + (this.stoneAmount * 30)));
-        fill('red')
-        text(`Score: ${this.score}`, this.sidebar.w / 2, this.sidebar.h * 0.15);
+        if (currentScreen == 2) {
+            fill('red');
+            text(`Score: ${this.score}`, this.sidebar.w / 2, this.sidebar.h * 0.15);
+        }
         return this.score;
     }
 

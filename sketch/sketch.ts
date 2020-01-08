@@ -26,6 +26,7 @@ let deathSound: p5.SoundFile;
 let winSound: p5.SoundFile;
 let buildMusic: p5.SoundFile;
 let gameFont: p5.Font;
+let splashImg: p5.Image;
 
 /**
  * Built in preload function in P5
@@ -55,6 +56,7 @@ function preload() {
   winSound = (window as any).loadSound("./assets/sound/win.wav");
   buildMusic = (window as any).loadSound("./assets/sound/buildermusic.mp3");
   gameFont = loadFont("assets/VT323.ttf");
+  splashImg = loadImage("./assets/images/test.png");
 }
 
 /**
@@ -92,10 +94,11 @@ function draw() {
 
   //Playable game
   if (currentScreen == 2) {
-    background(200);
+   // background(200);
     gameController.drawGameArea();
     gameController.drawLevel();
     gameController.drawSidebar();
+    gameController.drawSidebarright();
     gameController.drawAssets();
     player.show();
     if (phase) {
@@ -121,9 +124,9 @@ function keyPressed() {
   let logLength: number = gameController.logs.length;
   let stoneLength: number = gameController.stones.length;
 
-  if (keyCode == 32 && player.onGround === true && phase === true) {
+  if (keyCode == 32 && currentScreen == 2 && player.onGround === true && phase === true) {
     player.jump();
-  }
+  }  
   if (keyCode == 66) {
     gameController.changeGamePhase();
   }
@@ -150,18 +153,14 @@ function keyPressed() {
   }
   if (keyCode == 76) { //"L"
     currentScreen = 1; //Resets level
+    phase = false;
   }
 }
 
 /**
  * Handle mouse input
  */
-function mousePressed() {
-  if (currentScreen == 0) {
-    mySong.setVolume(0.6);
-    mySong.play();
-    currentScreen = 1;
-  }
+function mousePressed() {  
   if (currentScreen == 3) {
     currentScreen = 1;
     mySong.setVolume(0.6);
@@ -198,8 +197,39 @@ function mousePressed() {
       currentScreen = 2;
       assetNumber = 4; //Resets level
     }
+    if (
+      mouseX > windowWidth / 2 - 50 &&
+      mouseX < windowWidth / 2 + 50 &&
+      mouseY > windowHeight / 2 &&
+      mouseY < windowHeight / 2 + 100
+    ) {
+      mySong.stop()
+      buildMusic.play()
+      currentLevel = 2;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets level
+    }
+    if (
+      mouseX > windowWidth / 2 + 100 &&
+      mouseX < windowWidth / 2 + 200 &&
+      mouseY > windowHeight / 2 &&
+      mouseY < windowHeight / 2 + 100
+    ) {
+      mySong.stop()
+      buildMusic.play()
+      currentLevel = 3;
+      gameController = new GameController();
+      currentScreen = 2;
+      assetNumber = 4; //Resets level
+    }
   }
-  
+
+  if (currentScreen == 0) {
+    mySong.setVolume(0.6);
+    mySong.play();
+    currentScreen = 1;
+  }
 }
 
 /**
