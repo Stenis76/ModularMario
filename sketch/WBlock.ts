@@ -65,7 +65,7 @@ class Block extends LevelObject {
         player.vx > 0 && 
         !player.onGround
       ) {
-        player.onWallLeft = true;
+        // player.onWallLeft = true;
         player.x = block.left - char.width;
       }
       if (
@@ -75,8 +75,8 @@ class Block extends LevelObject {
         player.vx < 0 && 
         !player.onGround
       ) {
-        player.onWallRight = true;
-
+        // player.onWallRight = true;
+        player.x = block.right
       }
     }
   }
