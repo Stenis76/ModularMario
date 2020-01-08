@@ -11,6 +11,7 @@ class Character {
   public move: number;
   public cellUnit: number;
   public onGround: boolean;
+  public onWall: boolean;
 
   private gravity: number;
   private friction: number;
@@ -27,13 +28,28 @@ class Character {
     this.friction = cellUnit / 60;
     this.move = 0;
     this.onGround = false;
+    this.onWall = false;
   }
 
   public jump() {
-    this.vy = -this.cellUnit / Math.PI;
+    this.vy = -this.cellUnit * 0.30;
     jumpSound.play();
     this.onGround = false;
   }
+
+  // public wallJumpLeft() {
+  //   this.vy = -this.cellUnit * .25;
+  //   this.vx = -this.cellUnit * .1;
+  //   jumpSound.play();
+  //   this.onGround = false;
+  // }
+  // public wallJumpRight() {
+  //   this.vy = -this.cellUnit * .25;
+  //   this.vx = -this.cellUnit * .1;
+  //   jumpSound.play();
+  //   this.onGround = false;
+  // }
+
 
   public update() {
     this.y += this.vy;
@@ -48,6 +64,13 @@ class Character {
       // falling
       this.onGround = false;
     }
+    if(this.onGround) {
+      this.onWall = false
+    }
+    if(this.onWall) {
+      this.onGround = false
+    }
+    console.log(this.onWall);  
   }
 
   public run() {
@@ -69,13 +92,6 @@ class Character {
     if (abs(this.vx) < 0.1) {
       this.vx = 0;
     }
-
-    // if (this.x < this.GA.x) {
-    //   this.x = this.GA.x;
-    // }
-    // if (this.x > this.GA.x + this.GA.w - this.w) {
-    //   this.x = this.GA.x + this.GA.w - this.w;
-    // }
   }
 
   public abletoMovePlayer() {
@@ -84,6 +100,6 @@ class Character {
 
   public show() {
     fill(22, 255, 255);
-    rect(this.x, this.y, this.w, this.h);
+    image(playerSprite,this.x, this.y, this.w, this.h);
   }
 }
