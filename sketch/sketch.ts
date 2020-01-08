@@ -160,9 +160,10 @@ function mousePressed() {
     currentScreen = 1;
   }
   if (currentScreen == 3) {
+    currentScreen = 1;
     mySong.setVolume(0.6);
     mySong.play();
-    currentScreen = 1;
+    loop()
   }
 
   //Start new level
@@ -176,6 +177,9 @@ function mousePressed() {
       currentLevel = 0;
       gameController = new GameController();
       currentScreen = 2;
+      mySong.stop()
+      buildMusic.play()
+
       assetNumber = 4; //Resets leve
     }
     if (
@@ -184,12 +188,15 @@ function mousePressed() {
       mouseY > windowHeight / 2 &&
       mouseY < windowHeight / 2 + 100
     ) {
+      mySong.stop()
+      buildMusic.play()
       currentLevel = 1;
       gameController = new GameController();
       currentScreen = 2;
       assetNumber = 4; //Resets level
     }
   }
+  
 }
 
 /**
