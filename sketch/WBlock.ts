@@ -5,7 +5,8 @@ class Block extends LevelObject {
 
   public draw() {
     fill("white");
-    image(blockImage, this.x, this.y, this.w, this.h);
+    // image(blockImage, this.x, this.y, this.w, this.h);
+    rect(this.x, this.y, this.w, this.h);
     redraw();
   }
 
