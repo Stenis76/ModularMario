@@ -8,6 +8,10 @@ let player: any;
 let spawnPoint: object;
 
 let playerSprite: p5.Image;
+let level1Image: p5.Image;
+let level2Image: p5.Image;
+let level3Image: p5.Image;
+let level4Image: p5.Image;
 let blockImage: p5.Image;
 let finishImage: p5.Image;
 let ladderImage: p5.Image;
@@ -51,6 +55,10 @@ function preload() {
   goldImage = loadImage("./assets/images/gold.png");
   silverImage = loadImage("./assets/images/silver.png");
   bronzeImage = loadImage("./assets/images/bronze.png");
+  level1Image = loadImage("./assets/images/level1.png");
+  level2Image = loadImage("./assets/images/level2.png");
+  level3Image = loadImage("./assets/images/level3.png");
+  level4Image = loadImage("./assets/images/level4.png");
   backgroundImage = loadImage("./assets/images/backgroundd.png");
   mySong = (window as any).loadSound("./assets/sound/smoke.mp3");
   jumpSound = (window as any).loadSound("./assets/sound/hopp.wav");

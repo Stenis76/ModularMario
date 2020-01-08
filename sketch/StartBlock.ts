@@ -5,7 +5,7 @@ class StartBlock extends LevelObject {
     }
     
     public draw() {
-        fill('red');
+        noFill();
         rect(this.x, this.y, this.w, this.h);
     }
 }
