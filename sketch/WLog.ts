@@ -64,7 +64,6 @@ class Log extends LevelObject {
         player.vx > 0 &&
         !player.onGround
       ) {
-        // console.log("touch left side of block");
         player.x = block.left - char.width;
       }
       if (
@@ -73,7 +72,6 @@ class Log extends LevelObject {
         player.vx < 0 &&
         !player.onGround
       ) {
-        // console.log("touch right side of block");
         player.x = block.right;
       }
     }

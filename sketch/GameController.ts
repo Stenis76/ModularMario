@@ -35,12 +35,12 @@ class GameController {
     cellUnit: 0
 };
 
-  //Draw the gameArea
+  //Måla ut gameArea
   public drawGameArea() {
     this.gameArea.draw();
   }
 
-  //Loop list of level objects and draw them
+  //Loopa igenom alla block i leveln och måla ut dem
   public drawLevel() {
 
     for (let i = 0; i < this.level.levelObjects.length; i++) {
@@ -66,6 +66,7 @@ class GameController {
     return this.spawnPoint;
   }
 
+  //Placera ut spelaren på startpunkten
   public spawnPlayer() {
     this.spawnPoint = this.drawLevel();
     player = new Character(
@@ -76,7 +77,7 @@ class GameController {
     return player;
   }  
   
-    //Loop list of level assets and draw them
+    //Loopa igenom alla hjälpmedel till leveln och måla ut dem
     public drawAssets() {
 
         this.ladders = [];
@@ -115,28 +116,31 @@ class GameController {
         }
     }
 
-    //Draw the Sidebar
+    //Måla ut sidebar och visa aktuell score
     public drawSidebar() {  
         this.sidebar.draw(this.laddersLeft, this.logsLeft, this.stonesLeft); 
         let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
         score.getScore();          
     }
 
+    //Måla ut höger sidebar
     public drawSidebarright(){
       this.sidebarright.draw();
     }
 
+    // När spelaren når sitt mål
     public win() {
       noLoop()
       mySong.stop()
       winSound.play()
       clearInterval(this.timer);
       this.timer = 0;
-      let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length);
+      let score = new Score(this.time, this.laddersLeft.length, this.logsLeft.length, this.stonesLeft.length); //Känn av hur många hjälpmedel som du har kvar
       let scorescreen = new Scorescreen(score.getScore());
       scorescreen.draw();
       phase = false;
 
+      // Per level - skicka in score till localstorage
       if (currentLevel == 0) {
         this.latestScore1 = score.getScore();
         localStorage.setItem("level1ls",JSON.stringify(this.latestScore1));
@@ -175,7 +179,7 @@ class GameController {
       
     }
 
-    //Go into buildphase
+    //Växla mellan byggfas och spelfas
     public changeGamePhase() {
       
         if (this.inBuildPhase === true) { 
@@ -195,6 +199,7 @@ class GameController {
       }
     }
 
+    //Måla ut level select skärmen
     public levelSelect() {
       fill('black');
       rect(windowWidth, windowHeight, 0, 0); 
@@ -241,7 +246,7 @@ class GameController {
       noStroke();      
     }
 
-    //When in buildphase, let builder class handle drawing of assets to gameArea
+    //Väl i byggfasen, låt builder klassen hantera utmålning av hjälpmedel
     public buildPhase(assetNumber: number) {
         if (this.inBuildPhase) {
             let builder = new Builder(this.inBuildPhase);      

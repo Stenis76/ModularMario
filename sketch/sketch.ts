@@ -124,14 +124,13 @@ function draw() {
       assetNumber = 0;
     }
   }
+  //Scorescreen
   if (currentScreen == 3) {
     gameController.win();
   }
 }
 
-/**
- * Handle keyboard input
- */
+// Hantera tangentbordstryckningar
 function keyPressed() {
   let ladderLength: number = gameController.ladders.length;
   let logLength: number = gameController.logs.length;
@@ -147,39 +146,37 @@ function keyPressed() {
   //   player.wallJumpRight();
   // }
   
-  if (keyCode == 66) {
+  if (keyCode == 66) { //B
     gameController.changeGamePhase();
   }
-  if (keyCode == 49) {
+  if (keyCode == 49) { //1
     assetNumber = 1;
     if (ladderNbr < ladderLength - 1) {
       ladderNbr++;
     }
   }
-  if (keyCode == 50) {
+  if (keyCode == 50) { //2
     assetNumber = 2;
     if (logNbr < logLength - 1) {
       logNbr++;
     }
   }
-  if (keyCode == 51) {
+  if (keyCode == 51) { //3
     assetNumber = 3;
     if (stoneNbr < stoneLength - 1) {
       stoneNbr++;
     }
   }
-  if (keyCode == 82) {
+  if (keyCode == 82) { //R
     assetNumber = 4; //Resets level
   }
-  if (keyCode == 76) { //"L"
+  if (keyCode == 76) { //L
     currentScreen = 1; //Resets level
     phase = false;
   }
 }
 
-/**
- * Handle mouse input
- */
+// Hantera mustryckningar
 function mousePressed() {  
   if (currentScreen == 3) {
     currentScreen = 1;
@@ -188,7 +185,7 @@ function mousePressed() {
     loop()
   }
 
-  //Start new level
+  //Starta ny level när du är på levelselect
   if (currentScreen == 1) {
     if (
       mouseX > windowWidth / 2 - 350 &&

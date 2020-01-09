@@ -25,7 +25,6 @@ class SplashScreen {
     text("click anywhere to start", width / 2, height / 2.5);
     textSize(20);
     text(infoText, width / 2, height / 2 + 20);
-    // console.log(this.h, this.w);
   }
 }
 

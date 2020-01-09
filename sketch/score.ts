@@ -13,6 +13,7 @@ private sidebar = new Sidebar;
         this.stoneAmount = stoneAmount;    
     }
 
+    // Hämta score uträknat på tid och hjälpmedel ej använt.
     public getScore(): number {    
         this.score = Math.round(500 * Math.pow(Math.E, (this.time) / -120) + (100+(this.ladderAmount * 90) + (this.logAmount * 60) + (this.stoneAmount * 30)));
         if (currentScreen == 2) {

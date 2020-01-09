@@ -108,6 +108,7 @@ class LevelFactory {
     }
   ];
 
+  //Loopa igenom leveln och placera färdigmålade objekt i en lista och hjälpmedel i annan lista.
   public getLevel(currentLevel: number): any {
 
     let cellUnit = this.GA.w / this.levels[currentLevel].layout.length;

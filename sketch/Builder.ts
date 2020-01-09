@@ -2,7 +2,6 @@ class Builder {
   public currentAsset: string = "none";
   private gameArea = new GameArea();
   private sidebar = new Sidebar();
-
   private phase: boolean;
 
   public constructor(phase: boolean) {
@@ -16,7 +15,8 @@ class Builder {
         let y: number = this.gameArea.y;
         let w: number = cellUnit;
         let h: number = cellUnit;
-        
+     
+    //Måla ut rutnät    
     if (this.phase) {
       for (let i = 0; i < 20; i++) {
         for (let j = 0; j < 20; j++) {
@@ -26,10 +26,10 @@ class Builder {
 
           if (mouseX > x && mouseX < x + w && mouseY > y && mouseY < y + h) {
             if (assetNumber == 1) {
-              image(ladderImage, x, y, w, h * 3);
+              image(ladderImage, x, y, w, h * 3); //Måla stege som följer musen
               if (mouseIsPressed) {
                 insertSound.play();
-                ladders[ladderNbr].x = x;
+                ladders[ladderNbr].x = x; //Placera ut stege på spelplanen
                 ladders[ladderNbr].y = y;
                 ladders[ladderNbr].w = w;
                 ladders[ladderNbr].h = h * 3;
@@ -37,24 +37,24 @@ class Builder {
               }
             }
             if (assetNumber == 2) {
-              image(logImage, x, y, w * 3, h);
+              image(logImage, x, y, w * 3, h);  //Måla log som följer musen
               if (mouseIsPressed) {
                 insertSound.play();
                 logs[logNbr].x = x;
                 logs[logNbr].y = y;
                 logs[logNbr].w = w * 3;
-                logs[logNbr].h = h;
+                logs[logNbr].h = h; //Placera ut log på spelplanen
                 drawedAssets.push(logs[logNbr]);
               }
             }
             if (assetNumber == 3) {
-              image(stoneImage, x, y, w, h);
+              image(stoneImage, x, y, w, h);  //Måla stone som följer musen
               if (mouseIsPressed) {
                 insertSound.play();
                 stones[stoneNbr].x = x;
                 stones[stoneNbr].y = y;
                 stones[stoneNbr].w = w;
-                stones[stoneNbr].h = h;
+                stones[stoneNbr].h = h; //Placera ut stone på spelplanen
                 drawedAssets.push(stones[stoneNbr]);
               }
             }
@@ -67,6 +67,7 @@ class Builder {
     }
   }
 
+  //Loopa igenom de utplacerade hjälpmedlen och återställ deras position till sidebar
   public resetLevel() {
     for (let i = 0; i < drawedAssets.length; i++) {
       if (drawedAssets[i].constructor === Ladder) {
